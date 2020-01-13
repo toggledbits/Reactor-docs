@@ -1,0 +1,40 @@
+site_name: Reactor
+theme: readthedocs
+nav:
+  - Home: index.md
+  - Installation: Installation.md
+  - 'Getting Started': "Getting Started.md"
+  - Conditions:
+    - Overview: Conditions.md
+    - Condition Options: Condition-Options.md
+    - 'Type: Device State': Device-State-Conditions.md
+    - 'Type: Date-Time': Date-Time-Conditions.md
+    - 'Type: Sunrise-Sunset': Sunrise-Sunset-Conditions.md
+    - 'Type: Weekday': Weekday-Conditions.md
+    - 'Type: Group State': Group-State-Conditions.md
+    - 'Type: House Mode': House-Mode-Conditions.md
+    - 'Type: Expression Variable': Expression-Variable-Conditions.md
+    - 'Type: Geofence': Geofence-Conditions.md
+    - 'Type: Interval': Interval-Conditions.md
+    - 'Other Types': Other-Conditions.md
+  - Activities:
+    - Overview: Activities.md
+    - 'Action: Device Action': Device-Action.md
+    - 'Action: Delay': Delay-Action.md
+    - 'Action: Notify': Notify-Action.md
+    - 'Action: Run Lua': Run-Lua-Action.md
+    - 'Action: Run Scene': Run-Scene-Action.md
+    - 'Action: Run Activity': Run-Activity-Action.md
+    - 'Action: Set Variable': Set-Variable-Action.md
+    - 'Action: Change House Mode': Change-House-Mode-Action.md
+    - 'Action: Reset Latched': Reset-Latched-Action.md
+  - 'Expressions-&-Variables': 'Expressions-&-Variables.md'
+  - 'How To': How-To.md
+  - 'Backup & Restore': 'Backup-&-Restore.md'
+  - 'Support & Suggestions': 'Support-&-Suggestions.md'
+  - 'Concept: Modular-Logic': Modular-Logic.md
+  - 'Concept: Simplifying Logic': Simplifying-Logic.md
+  - 'Concept: UPnP/Luup State Variables': Luup-State-Variables-Tutorial.md
+  - 'Concept: Throttling': Throttling.md
+  - 'Concept: Reading the Status Display': Status-Display.md
+  - 'Service Definition': Service-Definition.md
