@@ -16,6 +16,7 @@ When restoring "ALL" configurations, Reactor will attempt to find the target Rea
 
 ## Restoring from an Archived Backup File
 If you have an older backup file from which you need to restore configuration, here is the procedure:
+
 1. Make a current backup, and download the current backup file (see above). This ensures you have a current snapshot before moving forward, as a precaution should you take a misstep in this procedure and need to reverse it.
 1. Make a copy of your archived file and name the copy `reactor-config-backup.json` (exactly).
 1. Use the uploader at _Apps > Develop apps > Luup files_ to upload the file created in the previous step. openLuup users can use _scp_, _ftp_, or whatever other tool you normally prefer to transfer the file into the same directory as that in which the Reactor plugin files are installed.
