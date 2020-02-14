@@ -45,10 +45,10 @@ luup.call_action( "urn:toggledbits-com:serviceId:Reactor", "RunScene", { SceneNu
 luup.call_action( "urn:toggledbits-com:serviceId:Reactor", "RunScene", { SceneNum="Outdoor Off" }, reactor_master_device_number )
 
 -- Example 3: Run the true state activity for a ReactorSensor group using the group ID
-luup.call_action( "urn:toggledbits-com:serviceId:Reactor", "RunScene", { SceneNum="grp937c83.true" }, reactor_sensor_device_number )
+luup.call_action( "urn:toggledbits-com:serviceId:ReactorSensor", "RunScene", { SceneNum="grp937c83.true" }, reactor_sensor_device_number )
 
 -- Example 4: Run the true state activity for a ReactorSensor group using the group name
-luup.call_action( "urn:toggledbits-com:serviceId:Reactor", "RunScene", { SceneNum="Night.true" }, reactor_sensor_device_number )
+luup.call_action( "urn:toggledbits-com:serviceId:ReactorSensor", "RunScene", { SceneNum="Night.true" }, reactor_sensor_device_number )
 ```
 
 You will note that the first of the above RunScene action examples is very similar to the Vera-native call, with two notable exceptions: (1) the service ID is different (you use Reactor's service ID), and (2) the device number must be that of the Reactor master device or a ReactorSensor (rather than the Vera root device number 0). It is intended to be as direct a replacement as possible.
