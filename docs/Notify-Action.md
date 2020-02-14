@@ -41,9 +41,14 @@ Optionally, there are a few SMTP configuration state variables that have default
 
 Any error that occurs in communication with the SMTP server will be logged to the LuaUPnP log file. Please look there for messages before posting "it doesn't work" messages on the community forums. Configuration problems with either the state variables required for this method or the mail server cause most problems. The author will not provide diagnostic support for your network or mail server.
 
+> SSL Users: You may need to set the (Reactor master device) state variables `SMTPSSLProtocol`, `SMTPSSLVerify` and `SMTPSSLOptions` for some servers. The defaults values are, respectively: `any`, `none`, and `all`. The possible values are those discussed in [the LuaSec documentation](https://github.com/brunoos/luasec/wiki). Users of Vera firmware older than 7.30 (and openLuup users with LuaSec < 0.8) often need to set `SMTPSSLProtocol` to `tlsv1` or `tlsv1_2` explicitly. Users of 7.30 and up (and openLuup users on LuaSec 0.8 and up) are encouraged to set `SMTPSSLOptions` to `all,no_sslv3` rather than setting `SMTPSSLProtocol` to anything other than `any`.
+
+> NOTE: When configuring to send through Gmail, you *must not* use your regular Google/Gmail password for authentication. It is highly recommended that you use two-factor authentication, and when you do, you need to use "application passwords". See [https://support.google.com/accounts/answer/185833?p=InvalidSecondFactor](https://support.google.com/accounts/answer/185833?p=InvalidSecondFactor).
+
 ### Prowl
 
-The Prowl method sends the requested message to the Prowl servers. Setup of the `ProwlAPIKey` on the Reactor master device is a prerequisite to using this method. An API key can be sourced from the Prowl service by registering for an account at https://www.prowlapp.com/ and then creating an API key at https://prowlapp.com/api_settings.php
+The Prowl method sends the requested message to the Prowl servers. Setup of the `ProwlAPIKey` on the Reactor master device is a prerequisite to using this method. An API key can be sourced from the Prowl service by registering for an account at [https://www.prowlapp.com/](https://www.prowlapp.com/) and then creating an API key at
+[https://prowlapp.com/api_settings.php](https://prowlapp.com/api_settings.php).
 
 Prowl method messages may contain expression variable references using the usual `{variableName}` syntax.
 
