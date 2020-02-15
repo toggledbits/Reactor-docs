@@ -12,7 +12,7 @@ The following action types are available in Reactor Activities:
 * [Run Scene](Run-Scene-Action.md) - Run a Vera scene;
 * [Run Activity](Run-Activity-Action.md) - Start another group's activity;
 * [Notify](Notify-Action.md) - Send a notification;
-* [Set Variable](SetVariable-Action.md) - Set a ReactorSensor variable's value;
+* [Set Variable](Set-Variable-Action.md) - Set a ReactorSensor variable's value;
 * [Reset Latched](Reset-Latched-Action.md) - Reset latched conditions in a group
 * [Comment](#comment-action) - A comment to help you document your activity.
 
