@@ -29,6 +29,10 @@ There are a couple of extra functions defined by Reactor as extensions to LuaXP:
 ### `finddevice( deviceSpec )` 
 This function will return the Luup device number of the first device matching `deviceSpec` (a string value, device name or UDN). The comparison is not case-sensitive.
 
+    finddevice( 42 )
+    finddevice( "Bathroom Humidity" )
+    finddevice( "uuid:4d494342-5342-5645-0054-000002fb3f6d" )
+
 ### `getstate( device, serviceId, variableName [, trouble [, watch]] )`
 This will probably be the function you use most frequently--it returns the value of the specified state variable (identified by both `serviceId` and `variableName`) for the specified `device`. If the `device` argument is a number, it is used as a device number; if it is a string, it may be a UDN or device name.
 
@@ -87,9 +91,8 @@ In addition to the functions above, all of LuaXP's built-in functions are suppor
 ## Using Expression Results
 Expression results can be used in other expressions in the same ReactorSensor by simply referring to the variable by name:
 
-`TempC: getstate( "Multi Temp 1", "urn:upnp-org:serviceId:TemperatureSensor1", "CurrentTemperature" )`
-
-`TempF: TempC * 9 / 5 + 32`
+    TempC: getstate( "Multi Temp 1", "urn:upnp-org:serviceId:TemperatureSensor1", "CurrentTemperature" )
+    TempF: TempC * 9 / 5 + 32
 
 Expression results can also be used in the value fields of Conditions, and the parameters of Actions. This is where they are very powerful. For example, you can have an expression compute the desired brightness for a light at a certain time of day, then have an action use that brightness value when turning on a light 
 in response to conditions met. To use a variable in a condition or action, just surround its name in "curly braces", for example: `{brightness}`.

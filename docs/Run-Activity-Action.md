@@ -10,4 +10,4 @@ Unless the "Stop all activities" checkbox is checked, this action does not stop 
 
 The counter-group behavior normally seen when group states change (i.e. the starting of the *false* group activity causes an implicit cancellation of a running *true* activity for the same group) is also *not* enforced by this action.
 
-This action was introduced in Reactor 3.4.
+See also: [Stop Activity Action](Stop-Activity-Action.md)

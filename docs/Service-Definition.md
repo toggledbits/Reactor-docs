@@ -1,12 +1,16 @@
 # Service Definition
 
-This section documents the `urn:toggledbits-com:serviceId:Reactor` and `urn:toggledbits-com:serviceId:ReactorSensor` services.
+This section documents the `urn:toggledbits-com:serviceId:Reactor` and `urn:toggledbits-com:serviceId:ReactorSensor` services. It is intended for advanced Vera and openLuup users that are familiar and comfortable with Lua, device states and actions, etc.
 
-## Service Actions
+## Generic Service Actions
 
-A ReactorSensor emulates a "security sensor," implementing the majority of Vera's `urn:micasaverde-com:serviceId:SecuritySensor1` service. The only action defined by this service is "SetArmed," which takes a single parameter ("newArmedValue", "0" or "1"), to set or clear the arming state of the sensor. The arming state of a ReactorSensor has no affect on its operation.
+A ReactorSensor emulates a standard Vera/Luup "security sensor" by implementing the basics of the `urn:micasaverde-com:serviceId:SecuritySensor1` service. This is a carry-over from Reactor's earliest days when its primary function was to be better trigger for Vera scenes. Reactor has since grown outside that role by providing its own [Activities](Activities.md) and other features.
 
-In addition, ReactorSensors implement a few actions of their own. These provide additional control over the sensor's behavior. All of these actions are in the `urn:toggledbits-com:serviceId:ReactorSensor` service.
+The only action defined by this service is `SetArmed`, which takes a single parameter (`newArmedValue`, with boolean values "0" or "1"), to set or clear the arming state of the sensor. The arming state of a ReactorSensor has no affect on its operation.
+
+## Reactor-Specific Service Actions
+
+ReactorSensors implement a few actions of their own. These provide additional control over the sensor's behavior. All of these actions are in the `urn:toggledbits-com:serviceId:ReactorSensor` service.
 
 ### SetEnabled
 The "SetEnabled" action takes a single parameter ("newEnabledValue", 0 or 1) to set whether the ReactorSensor is enabled or not. When disabled, a ReactorSensor stops updating and evaluating conditions, and will not change its "Tripped" state.
@@ -74,17 +78,18 @@ The `Options` parameter may also be passed as a JSON-encoded table (e.g. `"{ "st
 
 ### AddSensor
 
-The "AddSensor" action (in service `urn:toggledbits-com:serviceId:Reactor`) creates a new ReactorSensor. If the optional parameter "Count" is given, up to 16 new ReactorSensors can be created at once. This always causes a Luup reload (part of the process of creating a child device in Luup). It is not normally called directly--this action can be performed by using the "Add Sensor" button the Reactor root device's control panel.
+The `AddSensor` action (in service `urn:toggledbits-com:serviceId:Reactor`) creates a new ReactorSensor. If the optional parameter "Count" is given, up to 16 new ReactorSensors can be created at once. This always causes a Luup reload (part of the process of creating a child device in Luup). It is not normally called directly--this action can be performed by using the "Add Sensor" button the Reactor root device's control panel.
 
 ## State Variables
 
-A ReactorSensor acts like a "security sensor," implementing the majority of Vera's urn:micasaverde-com:serviceId:SecuritySensor1 service. The state variables "Armed," "Tripped," "ArmedTripped," "LastTrip," and "AutoUntrip" have their usual meanings and applications for this service.
+As stated above, a ReactorSensor acts like a "security sensor," implementing the basics of Vera's urn:micasaverde-com:serviceId:SecuritySensor1 service. The state variables `Armed`, `Tripped`, `ArmedTripped`, `LastTrip`, and `AutoUntrip` have their usual meanings and applications for this service.
 
 ReactorSensor's own state variables serve primarily two purposes: provide operational data that can be used externally, or modify behavior of the ReactorSensor. While those that provide data are generally safe to play with, those that modify behavior can have serious performance consequences, as the default behaviors of Reactor are considered "optimized" for the best balance of functionality and performance/stability. Altering Reactor's behaviors can have serious consequences, up to and including increasing Luup reloads and system crashes, so if you think you need to modify any of those variables, feel free to contact me and consult about your application--I'll be happy to guide you on the best way to meet your objectives.
 
 Except as otherwise indicated below, these variables live in the `urn:toggledbits-com:serviceId:ReactorSensor` service.
 
 ### Exported Expression Results (Multiple State Variables)
+
 When a ReactorSensor uses expressions, and the expression is marked for export, it stores two state variables for each expression, one with the same name as the variable name given when creating the expression, and one with "_Error" appended. The former contains the most recent value of the expression evaluation (i.e. what the expression returned), while the latter contains an error message resulting from the evaluation. For example, if one creates an expression with variable name "TempC", there will be a state variable named "TempC" that contains the expression result, and a state variable named "TempC_Error" that contains any error message from the expression evaluation.
 
 The values are associated with the `urn:toggledbits-com:serviceId:ReactorValues` service, so if you use these variables in Lua, Luup HTTP requests, or other facilities that require you to specify the service ID, make sure you are using the right one.
@@ -94,19 +99,25 @@ The values are associated with the `urn:toggledbits-com:serviceId:ReactorValues`
 The boolean (1=true, 0=false) state of each group in the ReactorSensor is stored in a variable called `GroupState_<groupid>`. The service ID for these variables is `urn:toggledbits-com:serviceId:ReactorGroup`. These variables are changed whenever the group state changes.
 
 ### TripCount
-TripCount increments on a ReactorSensor each time it trips. It may be handy for graphing or other analysis of how often conditions are met. It can be reset by writing 0 to it directly, or by using the ResetRuntime action.
+
+`TripCount` increments on a ReactorSensor each time it trips. It may be handy for graphing or other analysis of how often conditions are met. It can be reset by writing 0 to it directly, or by using the ResetRuntime action.
 
 ### Runtime
-Runtime accrues the total time (in seconds) that a ReactorSensor has been tripped, which may be handy for graphing or other analysis. It can be reset by writing 0 to it directly, or by using the ResetRuntime action.
+
+`Runtime` accrues the total time (in seconds) that a ReactorSensor has been tripped, which may be handy for graphing or other analysis. It can be reset by writing 0 to it directly, or by using the ResetRuntime action.
 
 ### RuntimeSince
-The RuntimeSince state variable contains a timestamp at which TripCount and Runtime were last reset by the ResetRuntime action.
+
+The `RuntimeSince` state variable contains a timestamp at which TripCount and Runtime were last reset by the ResetRuntime action.
 
 ### LastReset
-Luup maintains a "LastTrip" state variable (in service urn:micasaverde-com:serviceId:SecuritySensor1) that keeps the (Unix) timestamp of the last trip event, but there is no corresponding variable in that service for the time of the last reset. ReactorSensors therefore create this variable (in their own service, not Luup's) for this purpose, should you need it.
+
+Luup maintains a `LastTrip` state variable (in service `urn:micasaverde-com:serviceId:SecuritySensor1`) that keeps the (Unix) timestamp of the last trip event, but there is no corresponding variable in that service for the time of the last reset. ReactorSensors therefore create this `LastReset` variable (in their own service, not Luup's) for this purpose, should you need it.
 
 ### MaxUpdateRate/MaxChangeRate
-"MaxUpdateRate" and "MaxChangeRate" control the pace of updates a ReactorSensor is allowed to set. The "MaxUpdateRate" is the maximum number of updates (per minute) that the sensor will perform (an update is a re-evaluation of conditions in response to device state changes in those conditions), and defaults to 30. The "MaxChangeRate" is the maximum number of tripped-state changes the sensor is allowed per minute (default: 5). If the sensor exceeds either of these two parameters, it self-throttles and stops updating for a brief period. This is meant to prevent a defective or misbehaving device from driving Reactor crazy, and subsequently Reactor driving the system crazy (high CPU utilization, reduced UI and event performance, crashes, etc.). It also is effective at preventing loops in your logic from taking your system down (i.e. you make a ReactorSensor A that is conditioned on a ReactorSensor B tripping, and you then condition B on A tripping as well--you've created a loop that would cause the two sensors to just trip and untrip each other at machine speed).
+
+`MaxUpdateRate` and `MaxChangeRate` control the pace of updates a ReactorSensor is allowed to set. The `MaxUpdateRate` is the maximum number of updates (per minute) that the sensor will perform (an update is a re-evaluation of conditions in response to device state changes in those conditions), and defaults to 30. The `MaxChangeRate` is the maximum number of tripped-state changes the sensor is allowed per minute (default: 5). If the sensor exceeds either of these two parameters, it self-throttles and stops updating for a brief period. This is meant to prevent a defective or misbehaving device from driving Reactor crazy, and subsequently Reactor driving the system crazy (high CPU utilization, reduced UI and event performance, crashes, etc.). It also is effective at preventing loops in your logic from taking your system down (i.e. you make a ReactorSensor A that is conditioned on a ReactorSensor B tripping, and you then condition B on A tripping as well--you've created a loop that would cause the two sensors to just trip and untrip each other at machine speed).
 
 ### Retrigger
-The "Retrigger" state variable (default: 0) tells a ReactorSensor whether it should signal Tripped every time the evaluation of a condition group is true, or only the first time the evaluation becomes true. Because Reactor is generally edge-driven for devices (it responds to device changes immediately), the default value of 0 is usually the correct choice and this value usually should not be changed. When changed, it will, for example, cause a scene triggered by the ReactorSensor to run multiple times, and this may not be (usually is not) desirable, and could have serious performance consequences if not approached carefully. Please contact the author for consultation before setting this value to anything other than the default 0.
+
+The `Retrigger` state variable (default: 0) tells a ReactorSensor whether it should signal Tripped every time the evaluation of a condition group is true, or only the first time the evaluation becomes true. Because Reactor is generally edge-driven for devices (it responds to device changes immediately), the default value of 0 is usually the correct choice and this value usually should not be changed. When changed, it will, for example, cause a scene triggered by the ReactorSensor to run multiple times, and this may not be (usually is not) desirable, and could have serious performance consequences if not approached carefully. Please contact the author for consultation before setting this value to anything other than the default 0.

@@ -1,5 +1,5 @@
 site_name: Reactor
-theme: readthedocs
+theme: material
 nav:
   - Home: index.md
   - Installation: Installation.md
@@ -25,10 +25,11 @@ nav:
     - 'Action: Run Lua': Run-Lua-Action.md
     - 'Action: Run Scene': Run-Scene-Action.md
     - 'Action: Run Activity': Run-Activity-Action.md
+    - 'Action: Stop Activity': Stop-Activity-Action.md
     - 'Action: Set Variable': Set-Variable-Action.md
     - 'Action: Change House Mode': Change-House-Mode-Action.md
     - 'Action: Reset Latched': Reset-Latched-Action.md
-  - 'Expressions-&-Variables': 'Expressions-&-Variables.md'
+  - 'Expressions': 'Expressions-&-Variables.md'
   - 'How To': How-To.md
   - 'Backup & Restore': 'Backup-&-Restore.md'
   - 'Support & Suggestions': 'Support-&-Suggestions.md'

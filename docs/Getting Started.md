@@ -25,6 +25,10 @@ So to recap, a *ReactorSensor* is a container for an arbitrary number of logic *
 
 Here's an extremely basic Reactor project to get you familiar with a few of the core functions and interface elements you'll need to know. This isn't meant to be an exhaustive tutorial, just an introduction.
 
+## New to Vera?
+
+If you are a new Vera user, it's important that you understand some basic concepts about how Vera devices operation. Please read the [Luup State Variables Tutorial](../Luup-State-Variables-Tutorial) before continuing. This will explain how device states are stored in Vera, which is key to your success with Reactor and a variety of other tools and plugins on the system.
+
 ## Making Your First ReactorSensor
 
 When you first install Reactor, the only device you have is the master Reactor device, also referred to as the *plugin device*. This device is the ringmaster for an arbitrary number of *ReactorSensors*[^1] (abbreviated to RS), which are child devices you must first create. To create a ReactorSensor, go into the control panel of the Reactor master device and click the "Add Sensor" button. Creating a "child" device on Vera causes a Luup reload, which will happen immediately, and your system will be busy for a few seconds. While that's going on, refresh your browser (CTRL-F5 for Chrome/Win, SHIFT-F5 for Firefox/Win, CMD+SHIFT+R for most Mac browsers). **Don't skip this last step &mdash; it's very important.**

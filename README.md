@@ -3,6 +3,8 @@ Documentation for Reactor. The "master" branch corresponds to the current master
 
 ## Building and Previewing
 
+The "Material" theme is required: `pip install mkdocs-material`
+
 To build (using *mkdocs* 1.0.4): `mkdocs build`
 
 To test: `mkdocs serve [-a IP:PORT]` (default server on localhost:8000)
