@@ -1,5 +1,8 @@
 site_name: Reactor
 theme: material
+markdown_extensions:
+  - admonition
+  - footnotes
 copyright: 'Copyright &copy; 2020 Patrick H. Rigney, All Rights Reserved'
 nav:
   - Home: index.md

@@ -1,6 +1,7 @@
 # Reading the Status Display
 
-> This section is out-dated and needs to be revamped. The small amount of information presented still applies, but the appearance of the display has changed a lot, and much has been added.
+!!! warning "**CONSTRUCTION ZONE**"
+    This section is out-dated and needs to be revamped. The small amount of information presented still applies, but the appearance of the display has changed a lot, and much has been added.
 
 To help you visualize your conditions, a ReactorSensor's device control panel shows a status display with all of the configured condition groups and their respective conditions. Each condition line shows the condition as configured, as well as the current value for the condition, whether or not the condition is currently matched (true), and the date/time at which the last change in match state occurred. If all conditions within a condition group are met, the background color of the condition group is light green; otherwise, it is white.
 

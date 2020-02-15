@@ -6,7 +6,8 @@ The _Run Lua_ action allows you to run a Lua script. This works the same way as 
 
 Like scene Lua, if your script returns boolean _false_, execution of the actions in the activity stops at that point. If anything other than boolean _false_ is returned (including nothing), execution continues.
 
-> NOTE: Because Reactor is a plugin, and Vera runs plugins in different sandboxes (environments) from other plugins and startup Lua, globals defined outside of Reactor are not visible to Lua in Reactor. If you have a library of functions you define in your startup Lua, you can convert this code to a Lua module, which can then be used in startup Lua, scene Lua, Reactor Run Lua actions, or anywhere else. See "Converting Startup Lua to a Module" below.
+!!! attention
+    Because Reactor is a plugin, and Vera runs plugins in different sandboxes (environments) from other plugins and startup Lua, globals defined outside of Reactor are not visible to Lua in Reactor. If you have a library of functions you define in your startup Lua, you can convert this code to a Lua module, which can then be used in startup Lua, scene Lua, Reactor Run Lua actions, or anywhere else. See "Converting Startup Lua to a Module" below.
 
 ## Error Logging
 
@@ -43,4 +44,4 @@ You can also control options that are passed to ACE, such as theme. You can set 
 
 ## Converting Startup Lua to a Module
 
-Please refer to this thread: http://forum.micasaverde.com/index.php/topic,122435.msg445855.html#msg445855
+Please refer to this thread: [http://forum.micasaverde.com/index.php/topic,122435.msg445855.html#msg445855](http://forum.micasaverde.com/index.php/topic,122435.msg445855.html#msg445855)

@@ -42,11 +42,13 @@ For every group, and for the overall state of the ReactorSensor itself, there is
 
 When switching between *true* and *false* states, it's possible that delayed actions from the previously-started activity, called the *counter-activity*, are still running or waiting to run. If there are actions for the group's new state, the counter-activity will be stopped--the delayed actions will be cancelled and not allowed to run. If there are no actions for the group's new state, the counter-activity will be allowed to complete. For example, if you have a ReactorSensor with trip actions that turn on a light, delay 60 seconds, and then turn off the light, and your ReactorSensor untrips during the 60-second delay period *and* there are untrip actions, the turn off of the light will never happen. But, if there are no untrip actions, the trip activity will be allowed to complete and turn off the light as scheduled.
 
-> Note: The existence of *any* action, even just a comment, in a group state's activity is sufficient to stop the counter-activity. So, if you have a trip activity with several actions and delays, and you want those to stop on untrip, putting a comment in the untrip activity as the sole action is sufficient to stop the trip activity on untrip.
+!!! note
+    The existence of *any* action, even just a comment, in a group state's activity is sufficient to stop the counter-activity. So, if you have a true activity with several actions and delays, and you want those to stop on group false, putting a comment in the group's *is False* activity as the sole action is sufficient to stop the true activity.
 
 If your ReactorSensor has several groups with activities, it is possible for multiple activities to be run, if several groups change state at the same time and have activities associated with those states. Group activities are started first, in a (post-order (LRN) traversal)[https://en.wikipedia.org/wiki/Tree_traversal#Post-order_(LRN)] order; the overall ReactorSensor trip/untrip activity is the last to be started.
 
-> The foregoing describes the order in which activities are *started*. But if, for example, two groups have equal delays, there is no guarantee with respect to which group will resume first when the delay period expires.
+!!! note "Timing is not guarantted!"
+    The foregoing describes the order in which activities are *started*. But if, for example, two groups have equal delays, there is no guarantee with respect to which group will resume first when the delay period expires.
 
 ## Comment Action
 

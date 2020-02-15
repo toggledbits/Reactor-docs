@@ -17,6 +17,5 @@ necessary to export the variable.
 
 If you want to test an expression/variable in a different ReactorSensor, use the "Device State" condition. The expression must also be marked for export in that ReactorSensor.
 
-## You're Doing It Wrong
-
-If you are using an _Expression Variable_ condition to test an expression containing only a `getstate()` functional call, that's just a less efficient way of doing a [_Device State_ condition](Device-State-Conditions.md).
+!!! note "You're Doing It Wrong!"
+    If you are using an _Expression Variable_ condition to test an expression that contains only a `getstate()` function call and no other arithmetic, that's just a less efficient way of doing a [_Device State_ condition](Device-State-Conditions.md).

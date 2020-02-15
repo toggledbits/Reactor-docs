@@ -26,7 +26,8 @@ The *VeraAlerts Direct* method uses the VeraAlerts `SendAlert` action to directl
 
 The *SMTP Mail* method uses the Lua `socket.smtp` library to send a SMTP (Simple Mail Transfer Protocol) message. A subject and list of recipients may optionally be specified; if not specified, the default subject and recipients will be used. Email addresses specified with this method must be in the form `someone@domain` or `Name <someone@domain>` and may not contain commas, even if quotes are used (e.g. `"Lastname, Firstname" <someone@domain>` is not acceptable).
 
-**NOTE: This method does not currently support STARTTLS.** STARTTLS is a special SMTP command that converts an open, non-encrypted channel to encrypted, and is often used between SMTP clients and servers (it is particularly associated with port 587). This is a limitation of the underlying libraries used. As an alternative, many servers support fully-encrypted (SSL/TLS, from the start) connections on port 465.
+!!! attention "STARTTLS is not supported!"
+    *STARTTLS* is a special SMTP command that converts an open, non-encrypted channel to encrypted, and is often used between SMTP clients and servers (it is particularly associated with port 587). This is a limitation of the underlying libraries used. As an alternative, many servers support fully-encrypted (SSL/TLS, from the start) connections on port 465.
 
 In order to use this method, you are *required* to configure *all* of the following state variables on the Reactor master device:
 
@@ -43,9 +44,11 @@ Optionally, there are a few SMTP configuration state variables that have default
 
 Any error that occurs in communication with the SMTP server will be logged to the LuaUPnP log file. Please look there for messages before posting "it doesn't work" messages on the community forums. Configuration problems with either the state variables required for this method or the mail server cause most problems. The author will not provide diagnostic support for your network or mail server.
 
-> SSL Users: You may need to set the (Reactor master device) state variables `SMTPSSLProtocol`, `SMTPSSLVerify` and `SMTPSSLOptions` for some servers. The defaults values are, respectively: `any`, `none`, and `all`. The possible values are those discussed in [the LuaSec documentation](https://github.com/brunoos/luasec/wiki). Users of Vera firmware older than 7.30 (and openLuup users with LuaSec < 0.8) often need to set `SMTPSSLProtocol` to `tlsv1` or `tlsv1_2` explicitly. Users of 7.30 and up (and openLuup users on LuaSec 0.8 and up) are encouraged to set `SMTPSSLOptions` to `all,no_sslv3` and leave `SMTPSSLProtocol` set to `any`.
+!!! info "Additional configuration for SSL users"
+    You may need to set the (Reactor master device) state variables `SMTPSSLProtocol`, `SMTPSSLVerify` and `SMTPSSLOptions` for some servers. The defaults values are, respectively: `any`, `none`, and `all`. The possible values are those discussed in [the LuaSec documentation](https://github.com/brunoos/luasec/wiki). Users of Vera firmware older than 7.30 (and openLuup users with LuaSec < 0.8) often need to set `SMTPSSLProtocol` to `tlsv1` or `tlsv1_2` explicitly. Users of 7.30 and up (and openLuup users on LuaSec 0.8 and up) are encouraged to set `SMTPSSLOptions` to `all,no_sslv3` and leave `SMTPSSLProtocol` set to `any`.
 
-> NOTE: When configuring to send through Gmail, you *must not* use your regular Google/Gmail password for authentication, as storage of the password is not secure. Always use  two-factor authentication for your Google account, and when you do, you need to use the disposable "application passwords" for purposes such as this notification method. See [https://support.google.com/accounts/answer/185833?p=InvalidSecondFactor](https://support.google.com/accounts/answer/185833?p=InvalidSecondFactor).
+!!! info "Sending through Gmail"
+    When configuring to send through Gmail, you *must not* use your regular Google/Gmail password for authentication, as storage of the password is not secure. Always use  two-factor authentication for your Google account, and when you do, you need to use the disposable "application passwords" for purposes such as this notification method. See [https://support.google.com/accounts/answer/185833?p=InvalidSecondFactor](https://support.google.com/accounts/answer/185833?p=InvalidSecondFactor).
 
 ### Prowl
 

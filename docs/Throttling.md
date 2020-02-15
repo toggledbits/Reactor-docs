@@ -17,4 +17,5 @@ The `MaxUpdateRate` state variable sets the number of updates (e.g. responses to
 
 The `MaxChangeRate` state variable sets the number of *changes* (e.g. transitions between tripped/untripped states) allowed per minute before throttling kicks in. The default is 10.
 
-**Nota bene:** Arbitrarily setting these parameters to high numbers to effectively disable these checks is akin to putting black tape over the "Check Engine" light on your car's dashboard. You do so at your own peril. Generally speaking, if your device is being throttled even at the default values, some solid analysis of your logic conditions and activities is needed before making any changes.
+!!! danger
+    Arbitrarily setting these parameters to high numbers to effectively disable these checks is akin to putting black tape over the "Check Engine" light on your car's dashboard. You do so at your own peril. Generally speaking, if your device is being throttled even at the default values, some solid analysis of your logic conditions and activities is needed before making any changes.

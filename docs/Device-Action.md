@@ -6,9 +6,11 @@ The _Device Action_ action performs an action on a device (who knew?).
 
 When a device is selected, the action menu is updated to reflect the list of actions defined by the services associated with the device. Many devices will have "Common Actions," that are often performed on these devices, and these are promoted to the top of the action menu. Below the common actions, all of the devices associated services and the actions they define are listed.
 
-> NOTE: The action list can be quite lengthy, and not every action may be implemented by the device. It's up to you to experiment and figure out if your desired action works as expected. Reactor tries not to over-constrain the UI like the Vera scene editor does, as this often results in meaningful actions being inaccessible on the interface. I'd rather give you the tools you need to figure out what works.
+!!! note
+    The action list can be quite lengthy, and not every action may be implemented by the device. It's up to you to experiment and figure out if your desired action works as expected. Reactor tries not to over-constrain the UI like the Vera scene editor does, as this often results in meaningful actions being inaccessible on the interface. I'd rather give you the tools you need to figure out what works.
 
-> HELP EVERYONE OUT: If you have a device that is missing the Common Actions part of the menu, or a frequently-used action is missing from Common Actions, or if the device has particular rules or values that apply to the parameter for an action, please let the author know, and also submit the device data using the facility provided on the "Tools" tab. I use this data to enhance the device information database that helps smooth out the UI where particular facts are known.
+!!! note
+    HELP EVERYONE OUT: If you have a device that is missing the Common Actions part of the menu, or a frequently-used action is missing from Common Actions, or if the device has particular rules or values that apply to the parameter for an action, please let the author know, and also submit the device data using the facility provided on the "Tools" tab. I use this data to enhance the device information database that helps smooth out the UI where particular facts are known.
 
 ![Selecting an action](images/device-action-actions.png)
 
@@ -18,11 +20,13 @@ Once the action is selected, Reactor will display fields for the required parame
 
 The example above shows a "data list" control, which is fairly common in the action editor. It is a field that allows you to type in a value, or choose a predefined value from a list of expected/standard values. Because service definitions for devices are often not exhaustive, and there are many exceptions for values that these definitions don't provide, the data list control gives you the flexibility to choose a standard value, or enter your own if your device has a non-standard behavior.
 
-> Hint: the implementation behavior and appearance of "data list" controls varies from browser to browser. Chrome/Windows is shown in these screen shots; yours may look different. On some browsers, the pop-up list of values is only presented when the field is otherwise empty, so you may need to remove a prior value to have access to the pop-up list again.
+!!! attention
+    The implementation behavior and appearance of "data list" controls varies from browser to browser. Chrome/Windows is shown in these screen shots; yours may look different. On some browsers, the pop-up list of values is only presented when the field is otherwise empty, so you may need to remove a prior value to have access to the pop-up list again.
 
 The data list also presents a list of defined expression/variable names from the current ReactorSensor, which you can select to use the then-current value of that expression in the action's parameter. For parameters that just use a plain input field instead of a data list, you can specify an expression value by wrapping the expression/variable name in "curly braces" like this: `{brightness}`.
 
-> NOTE: Again, if you run into a field in an action for a device where Reactor can do better error-checking on the possible values, please report that to me and submit the device data on the "Tools" menu.
+!!! note
+    Again, if you run into a field in an action for a device where Reactor can do better error-checking on the possible values, please report that to me and submit the device data on the "Tools" menu.
 
 ## Trying Your Device Action
 

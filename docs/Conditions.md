@@ -6,7 +6,8 @@ Conditions are organized into one or more _condition groups_. All ReactorSensors
 
 You may create as many condition groups as you need. Groups can be nested--you can create groups within groups. This allows very complex logic conditions to be created. When writing a logic operation out, such as `( (A OR B OR C) AND (D OR E) AND NOT F )`, the parenthetical expressions are equivalent to condition groups in Reactor, so in structuring your configuration, it may be helpful to write out your logic in this way before launching into the Conditions editor.
 
-> CONCEPT: When logic is written out as in the example above, the expressions in parentheses are equivalent to condition groups in Reactor.
+!!! info "Important Concept!"
+    When logic is written out as in the example above, the expressions in parentheses are equivalent to condition groups in Reactor.
 
 Each condition group has an associated *logic operation*, and the state of the group is the result of that operation performed on the results of the conditions within it:
 
@@ -55,7 +56,8 @@ Reactor itself, then, behaves similarly to conditions and groups. Once tripped b
 
 As of Reactor 3.0, each group can have its own _activities_, a list of actions to be performed when the group state changes. This sets the stage for [creating modular logic](Modular-Logic.md).
 
-> TIP: Keep this simple rule in mind when creating your logic: group activities and triggers are only fired when there is a _change_ in logical state (_true_ to _false_ or _false_ to _true_).
+!!! tip
+    Keep this simple rule in mind when creating your logic: group activities and triggers are only fired when there is a _change_ in logical state from _true_ to _false_ or _false_ to _true_.
 
 ## Simplifying Your Logic
 

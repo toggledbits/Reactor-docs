@@ -1,6 +1,7 @@
 # Simplifying Logic
 
-> This page is very much a work in progress. Suggestions and contributions would be appreciated (that applies everywhere in these docs).
+!!! note "**UNDER CONSTRUCTION**"
+    This page is very much a work in progress. Suggestions and contributions would be appreciated (that applies everywhere in these docs).
 
 It's easy to get overwhelmed by complexity when creating logic conditions, so here are a couple of pointers to help you achieve your goals.
 

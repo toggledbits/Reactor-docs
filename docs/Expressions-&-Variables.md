@@ -40,7 +40,8 @@ This will probably be the function you use most frequently--it returns the value
 
 Note that the `getstate()`'s `device` argument performs the function of `finddevice()` internally, so it is not necessary to use both. The whitespace in the example is for clarity only and may be omitted (except for that in the string "Multi Temp 1", which must match exactly any whitespace used in the device name).
 
-> For new players, finding the service ID and variable name can be a little challenging. To make life easier, there's a "getstate() insert tool" that will build and insert a `getstate()` for you. Click the ![material design memory icon](images/md-btn-memory.png) icon on the expression row to build and insert the function at the expression's current insertion point.
+!!! info "How to build a `getstate()` call quickly"
+    For new players, finding the service ID and variable name can be a little challenging, and even for old-timers, typing the long service IDs is a nuisance and error-prone. To make life easier, there's a "getstate() insert tool" that will build and insert a `getstate()` for you. Click the ![material design memory icon](images/md-btn-memory.png) icon on the expression row to build and insert the function at the expression's current insertion point.
 
 The return value of `getstate()` is always a string (unless there is an error, such as the device not being found, in which case it may be *null*). To use the return value in other expressions, you may need to convert it to another data type (e.g. use `tonumber()` to convert it to a number).
 
@@ -58,7 +59,8 @@ This function fetches the value of an attribute of the specified `device`. For e
 ### `stringify( expression )`
 This function converts the result of the given expression to a string value that can be safely stored in Luup state variables (which only store strings) or for display. For example, the expression `list(51, 88, 4)` returns an array, which is a non-primitive type that cannot be stored in a state variable. To convert it to a string, we would use `stringify( list( 51, 88, 4 )`, which would produce `"[51,88,4]"`. This string can be converted back to an array using `unstringify()` below.
 
-> It is not necessary to `stringify()` expressions that are marked exported. Reactor will automatically stringify any non-primitive type before storing it on the export state variable.
+!!! info
+    It is not necessary to `stringify()` expressions that are marked exported. Reactor will automatically stringify any non-primitive type before storing it on the export state variable.
 
 ### `unstringify( stringified_data )`
 This function undoes the effect of `stringify()`, so that you can again use the non-primitive data that was stored. This function also decodes JSON data to make it accessible. Working from the example in `stringify()` above, `len( unstringify( "[51,88,4]" ) )` would return 3 (the length of the array), while `max( unstringify( "[51,88,4]" ) )` would return 88 (the largest numeric value in the array).
@@ -108,6 +110,7 @@ You'll likely find that most variables you create are only used within the conte
 
 Export a value when you have a device or service *outside the ReactorSensor* that needs to access the value, such as another ReactorSensor using it in a condition, or when using the dataMine/dataMine2 plugin to collect and graph the values.
 
-> NOTE: Prior to Reactor version 3.3, all variables were unconditionally exported. As of 3.3, exporting is user-configurable. The default for all *new* variables is *not exported*; however, in order to maintain backward compatibility with configurations created prior to 3.3, the default for all existing variables (i.e. those created in versions 3.2 and earlier) is *exported*.
+!!! info
+    Prior to Reactor version 3.3, all Reactor variables were unconditionally exported. As of 3.3, exporting is user-configurable. The default for all *new* variables is *not exported*; however, in order to maintain backward compatibility with configurations created prior to 3.3, the default for all existing variables (i.e. those created in versions 3.2 and earlier) is *exported*.
 
 Because exporting means storing the value on a Luup state variable, and all state variable values in Luup are strings, all exported values are thus stored as strings. Numbers simply become the string representation of their value (e.g. 123 becomes the string "123"). Booleans are mapped to "0" for `false` and "1" for `true`. All non-primitive types (i.e. not number, boolean, string, or `null`) are JSON-encoded, creating a string. To use the exported string in another ReactorSensor and get it back to its original data type, it may be necessary to use functions like `tonumber()` or `unstringify()` (see above).
