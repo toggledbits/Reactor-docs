@@ -1,0 +1,7 @@
+RewriteBase "/static/reactor/docs"
+
+# Leave valid URLs alone
+RewriteRule "^3.5/" - [L]
+
+# Default version is 3.5 now
+RewriteRule "(.*)" "3.5/$1" [L,R]
