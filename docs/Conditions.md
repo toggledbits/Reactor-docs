@@ -4,9 +4,11 @@ _Conditions_ are the core of Reactor's programmable logic. It's hard to imagine 
 
 Conditions are organized into one or more _condition groups_. All ReactorSensors contain a group called the _root group_, and it is the group that contains all other groups and conditions. The state of the ReactorSensor overall (its _tripped state_) is also determined by the state of the root group. When the root group is true, the ReactorSensor will be tripped; it is untripped otherwise. 
 
-You may create as many condition groups as you need. Groups can be nested--you can create groups within groups. This allows very complex logic conditions to be created. When writing a logic operation out, such as `( (A OR B OR C) AND (D OR E) AND NOT F )`, the parentheses are groups, so in structuring your conditions in Reactor, it may be helpful to write out your logic in this way before launching into the Conditions editor.
+You may create as many condition groups as you need. Groups can be nested--you can create groups within groups. This allows very complex logic conditions to be created. When writing a logic operation out, such as `( (A OR B OR C) AND (D OR E) AND NOT F )`, the parenthetical expressions are equivalent to condition groups in Reactor, so in structuring your configuration, it may be helpful to write out your logic in this way before launching into the Conditions editor.
 
-Each condition group has an associate *logic operation*, and the state of the group is the result of that operation performed on the results of the conditions within it:
+> CONCEPT: When logic is written out as in the example above, the expressions in parentheses are equivalent to condition groups in Reactor.
+
+Each condition group has an associated *logic operation*, and the state of the group is the result of that operation performed on the results of the conditions within it:
 
 * `AND` - All conditions in the group must be *true* for the group state to be *true*;
 * `OR` - Any condition (one or more) in the group must be *true* for the group state to be *true*; the group is only *false* when *all* of its conditions are *false*;
@@ -19,7 +21,7 @@ The last group operator, `NUL`, is intended to be used to create [modular logic]
 In addition to each condition's specific test operation, most condition types have [condition options](Condition-Options.md) that can be used to further modify their evaluation state, or restrict when the condition is true (for example, only after the test condition has been met for a period of time, or a number of times within a period of time, or in sequence following another condition). See [Condition Options](Condition-Options.md) for full details.
 
 ## Creating and Organizing Groups and Conditions
-To create a group, one simply clicks on the "New Group" icon at the bottom of the root group or another existing group. The new group will be created as a child of that group. When you create a new group, it will be a default name that is the same as its group ID. You can change the name by clicking on the name in the group's header and entering the new name. Click outside the input field to save the new group name.
+To create a group, one simply clicks on the "New Group" icon at the bottom of the root group or another existing group. The new group will be created as a child of that group. When you create a new group, it will be given a default name that is the same as its group ID. These aren't very readable or descriptive for humans, so you should change it by clicking on the name in the group's header and entering a new name. Click outside the input field to save the new group name. You can change the group name at any time--it is only used for display.
 
 To add conditions to a group, click the "New Condition" icon at the bottom of the group. Then select its type and options.
 
