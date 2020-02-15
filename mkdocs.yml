@@ -3,6 +3,8 @@ theme: material
 markdown_extensions:
   - admonition
   - footnotes
+  - sane_lists
+  - def_list
 copyright: 'Copyright &copy; 2020 Patrick H. Rigney, All Rights Reserved'
 nav:
   - Home: index.md
@@ -34,6 +36,7 @@ nav:
     - 'Action: Change House Mode': Change-House-Mode-Action.md
     - 'Action: Reset Latched': Reset-Latched-Action.md
   - 'Expressions': 'Expressions-&-Variables.md'
+  - 'FAQ': 'FAQ.md'
   - 'How To': How-To.md
   - 'Backup & Restore': 'Backup-&-Restore.md'
   - 'Support & Suggestions': 'Support-&-Suggestions.md'
