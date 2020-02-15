@@ -1,3 +1,6 @@
+ExpiresActive On
+ExpiresDefault "access plus 5 minutes"
+
 RewriteBase "/static/reactor/docs"
 
 # Leave valid URLs alone
