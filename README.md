@@ -10,3 +10,7 @@ To test: `mkdocs serve [-a IP:PORT]` (default server on localhost:8000)
 ## Published Documentation
 
 The published documentation for the current released version of Reactor is always available at the convenience URL: [https://www.toggledbits.com/static/reactor/docs/](https://www.toggledbits.com/static/reactor/docs/). Documentation for a specific Reactor version (3.5 and above only) can be found at `https://www.toggledbits.com/static/reactor/docs/VERSION/`, where *VERSION* is the Reactor version number (e.g. 3.5). 
+
+## Copyright
+
+This file and all Reactor documentation is Copyright 2020 Patrick H. Rigney, All Rights Reserved. These files may not be disseminated or published except as first expressly permitted by the author of Reactor.
