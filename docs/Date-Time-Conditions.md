@@ -20,7 +20,9 @@ Here are some additional examples:
 * "after Jun 10" is the inverse: active starting at midnight on June 10 in any year through 23:59:59 of December 31 of that same year;
 * "between Nov 10 and Feb 10" is interesting, because the start date appears to be after the end date--in this case, the period from November 10 of any year to February 10 of the following year is the active period (note this is equivalent to "not between Feb 10 and Nov 10");
 * "between 10:00 and 22:00" is active between 10am and 10pm on any date;
-* "between 22:00 and 10:00", like the "Nov 10" example above, the start time being after the end time creates a span over midnight--this condition is active from 10pm any day to 10am the following day.
+* "between 22:00 and 10:00", like the "Nov 10" example above, the start time being after the end time creates a span over midnight--this condition is active from 10pm any day to 10am the following day;
+* "after 22:00" will be *true* from 10pm until midnight, and then go *false* (i.e. "after HH:MM" is a synonym for "between HH:MM and midnight");
+* "before 22:00" will be *true* from midnight until 10pm, and then go *false* (i.e. "before HH:MM" is a synonym for "between midnight and HH:MM").
 
 Note that user interface currently does not go to exceptional lengths to keep you from doing the impossible--caveat user! One could currently, for example, set the condition up as "between Jan 1 2018 00:00 and Feb 2 2014 00:00", and this condition would simply never be met, with no warning from the user interface.
 
