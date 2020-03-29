@@ -35,6 +35,7 @@ nav:
     - 'Action: Set Variable': Set-Variable-Action.md
     - 'Action: Change House Mode': Change-House-Mode-Action.md
     - 'Action: Reset Latched': Reset-Latched-Action.md
+    - 'Action: HTTP Request': HTTP-Request-Action.md
   - 'Expressions': 'Expressions-&-Variables.md'
   - 'FAQ': 'FAQ.md'
   - 'How To': How-To.md

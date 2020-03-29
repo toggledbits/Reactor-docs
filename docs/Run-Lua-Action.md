@@ -6,8 +6,11 @@ The _Run Lua_ action allows you to run a Lua script. This works the same way as 
 
 Like scene Lua, if your script returns boolean _false_, execution of the actions in the activity stops at that point. If anything other than boolean _false_ is returned (including nothing), execution continues.
 
-!!! attention
+!!! attention "Plugins (like Reactor) are Sandboxed"
     Because Reactor is a plugin, and Vera runs plugins in different sandboxes (environments) from other plugins and startup Lua, globals defined outside of Reactor are not visible to Lua in Reactor. If you have a library of functions you define in your startup Lua, you can convert this code to a Lua module, which can then be used in startup Lua, scene Lua, Reactor Run Lua actions, or anywhere else. See "Converting Startup Lua to a Module" below.
+
+!!! attention
+    If you are using a _Run Lua_ action to just call `luup.call_action(...)` on a device, you should rather use a _Device Action_ &mdash; the _Run Lua_ action has considerable overhead in compiling the Lua fragment, and building and running the Lua environment. The _Device State_ condition is far more efficient for such a simple purpose.
 
 ## Error Logging
 

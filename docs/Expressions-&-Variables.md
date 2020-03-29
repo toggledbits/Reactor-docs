@@ -67,24 +67,9 @@ This function undoes the effect of `stringify()`, so that you can again use the 
 
 If you are using an expression to read an exported expression value from another ReactorSensor, you may need to use `unstringify()`, depending on how you intend to use the value. Remember that all state variables are strings, and `getstate()` only returns strings, so conversion may be necessary.
 
-### `arraypush( array, newElement, maxSize )`
-This function is meant to assist in the construction of series data. It pushes the value of the `newElement` argument onto the end of the specified `array`, and returns the updated array. If the array does not exist, it is created. The `maxSize` argument sets the maximum length of the array; if an element is added that causes the array to exceed this number, the oldest elements are dropped to conform to the required limit. 
+### `urlencode( str )` and `urldecode( urlstr )`
 
-A typical use might look something like this:
-
-??? Insert image of expression gathering temperature and storing on array.
-
-The first expression gets the current temperature from a temperature sensor. The second expression pushes the temperature measurement on the array. As shown, this array will grow to contain and maintain the last five temperature updates from the temperature sensor.
-
-### `sum( arg1 [, arg2 [, ...] ] )`
-This function returns the sum of its arguments. If any argument is an array, the elements of the array are summed.
-
-Want to create an average (mean)? Also see `count()` below.
-
-### `count( arg1 [, arg2 [, ...] ] )`
-This function returns the count of non-null arguments. If any argument is an array, the elements of the array are counted.
-
-The mean (average) of the temperature series in the `arraypush()` example above could be computed as `sum( array ) / count( array )`.
+These functions encode and decode, respectively, characters strings as URI components, so they can be used in the query parameters of a URL.
 
 ## LuaXP Built-in Functions
 

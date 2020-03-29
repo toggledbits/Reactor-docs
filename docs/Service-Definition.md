@@ -78,7 +78,40 @@ The `Options` parameter may also be passed as a JSON-encoded table (e.g. `"{ "st
 
 ### AddSensor
 
-The `AddSensor` action (in service `urn:toggledbits-com:serviceId:Reactor`) creates a new ReactorSensor. If the optional parameter "Count" is given, up to 16 new ReactorSensors can be created at once. This always causes a Luup reload (part of the process of creating a child device in Luup). It is not normally called directly--this action can be performed by using the "Add Sensor" button the Reactor root device's control panel.
+The `AddSensor` action (in service `urn:toggledbits-com:serviceId:Reactor` only) creates a new ReactorSensor. If the optional parameter "Count" is given, up to 16 new ReactorSensors can be created at once. This always causes a Luup reload (part of the process of creating a child device in Luup). It is not normally called directly--this action can be performed by using the "Add Sensor" button the Reactor root device's control panel.
+
+### SendSMTP
+
+The `SendSMTP` action (in service `urn:toggledbits-com:serviceId:Reactor` only) sends an SMTP message to the configured SMTP server [see Notify Action - SMTP Method](Notify-Action.md). The action's parameters are:
+
+* `To` - (required) A comma-separated list (if more than one) of recipient email addresses (see form below);
+* `Body` - (required) the body of the email message (plain text only);
+* `Subject` - The subject of the email message (plain text only; blank if not supplied);
+* `From` - The "from" address used for the envelope (if not supplied, the configured "From" address will be used);
+* `Cc` - A comma-separated list of additional recipients for the message (these will appear in the Cc header of the message);
+* `Bcc` - A comma-separated list of blind-copied recipients that will receive the message but not be visible in the message headers or envelope.
+
+Email addresses specified must be in either of the following forms:
+
+1. "Simple" form: `somebody@example.com`
+2. "Nominative" form: `John Doe <johndoe@example.com>` -- in this form, the human-readable name is supplied, and the email address is wrapped in `<>`; the human-readable name may precede or follow the wrapped email address.
+
+!!! attention "Additional Configuration Required!"
+    The `SendSMTP` action requires additional configuration on the Reactor master device prior to use. Please see the [SMTP Mail method of the Notify Action](Notify-Action.md#smtp-mail) for setup instructions.
+
+### SendSyslog
+
+This action (in service `urn:toggledbits-com:serviceId:Reactor` only) sends a Syslog datagram to a specifiec server. The parameters are:
+
+* `ServerIP` - (required) the IP address of the target Syslog server;
+* `Application` - (required) A short identifier for the source of the action (e.g. "scene-sunset" or "startuplua" -- it should be sufficiently descriptive to help you find the action call later if you need to);
+* `Message` - (required) the message text.
+* `Facility` - The facility number (integer 0-23, default: 23 which means "local7");
+* `Severity` - The syslog severity (integer 0-7, default 5 with means "notice");
+
+The datagram is sent using the Syslog-standard UDP as the transport layer (port 514). Because UDP is stateless and connectionless, there is no assurance, or confirmation, of delivery--the packet is sent and hopefully received. If the target server is down or not listening, the datagram is lost. There are no retries. No errors are returned or thrown.
+
+See also: [Syslog on Wikipedia](https://en.wikipedia.org/wiki/Syslog)
 
 ## State Variables
 

@@ -2,7 +2,10 @@
 
 _Conditions_ are the core of Reactor's programmable logic. It's hard to imagine a useful ReactorSensor that doesn't have at least one condition. A condition is a logic test that Reactor will perform, so in order to make Reactor do something, you have to have at least one condition to test something.
 
-Conditions are organized into one or more _condition groups_. All ReactorSensors contain a group called the _root group_, and it is the group that contains all other groups and conditions. The state of the ReactorSensor overall (its _tripped state_) is also determined by the state of the root group. When the root group is true, the ReactorSensor will be tripped; it is untripped otherwise. 
+!!! info "Important Concept!"
+    Conditions are *boolean*, and so have only two states: *true* and *false*. Once a condition becomes *true*, it remains *true* until the underlying test(s) fail, at which point it becomes *false*.
+
+Conditions are organized into one or more _condition groups_. All ReactorSensors contain a group called the _root group_, and it is the group that contains all other groups and conditions. The state of the ReactorSensor overall (its _tripped state_) is also determined by the state of the root group. When the root group is true, the ReactorSensor will be *tripped*; it is *untripped* otherwise. 
 
 You may create as many condition groups as you need. Groups can be nested--you can create groups within groups. This allows very complex logic conditions to be created. When writing a logic operation out, such as `( (A OR B OR C) AND (D OR E) AND NOT F )`, the parenthetical expressions are equivalent to condition groups in Reactor, so in structuring your configuration, it may be helpful to write out your logic in this way before launching into the Conditions editor.
 
@@ -18,6 +21,9 @@ Each condition group has an associated *logic operation*, and the state of the g
 * `NUL` - The group state is *null*, which means it does not make a contribution to the logic state of its parent group; logic elements within the NUL group still evaluate and generate results, however, so subgroups of a NUL group can have Activities.
 
 The last group operator, `NUL`, is intended to be used to create [modular logic](Modular-Logic.md). It allows you to make condition groups that may referred to by other conditions, but do not pass their own state upward. It has a similar effect to disabling the group, in that disabled groups do not affect their parent's state, but disabled groups also do not run their condition contents (including subgroups), where `NUL` groups can still evaluate all of their conditions and subgroups and launch activities.
+
+!!! info "Important Concept!"
+    Since a group is a kind of condition that contains other conditions, it therefore applies that a group, like any condition, can only be *true* or *false*. It cannot be *more true* or *more false*. If an OR group, for example, contains two conditions, and one of them becomes *true*, then group becomes *true*. If the second condition in the group later becomes *true*, *the group state does not change* &mdash; it's already *true* and it cannot become "more true." This is very important to understand when it comes to running Activities, discussed later.
 
 In addition to each condition's specific test operation, most condition types have [condition options](Condition-Options.md) that can be used to further modify their evaluation state, or restrict when the condition is true (for example, only after the test condition has been met for a period of time, or a number of times within a period of time, or in sequence following another condition). See [Condition Options](Condition-Options.md) for full details.
 
