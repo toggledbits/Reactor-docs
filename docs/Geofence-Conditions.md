@@ -7,8 +7,8 @@ The _Geofence_ condition type reacts to users arriving or departing Vera-native 
 !!! note "openLuup Users"
     Geofence conditions operate using Vera-specific data that is not available under openLuup, and so are not available on that platform. See the "All Users" box below.
 
-!!! note "All Users"
-    Challenges with Vera's geofencing using the Vera mobile apps have a long history. If you'd like to try an alternative method (that also works with openLuup), please contact me, as I have in development-test a controller-agnostic geofencing system (for which there's a Vera/openLuup plugin, of course).
+!!! note "Alternative Geofencing"
+    Challenges with Vera's geofencing using the Vera mobile apps have a long history, and openLuup has historically lacked an Android-based solution. If you'd like to try an alternative method that works with both Vera and openLuup, on Apple devices and Android, [please contact me via DM in the forums](https://community.getvera.com/u/rigpapa/), as I have in beta-test a controller-agnostic geofencing system and supporting plugin.
 
 ## Operating Modes
 

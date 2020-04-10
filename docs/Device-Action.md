@@ -7,14 +7,14 @@ The _Device Action_ action performs an action on a device (who knew?).
 When a device is selected, the action menu is updated to reflect the list of actions defined by the services associated with the device. Many devices will have "Common Actions," that are often performed on these devices, and these are promoted to the top of the action menu. Below the common actions, all of the devices associated services and the actions they define are listed.
 
 !!! note
-    The action list can be quite lengthy, and not every action may be implemented by the device. It's up to you to experiment and figure out if your desired action works as expected. Reactor tries not to over-constrain the UI like the Vera scene editor does, as this often results in meaningful actions being inaccessible on the interface. I'd rather give you the tools you need to figure out what works.
+    The action list can be quite lengthy, and not every action may be implemented by the device. It's up to you to experiment and figure out if your desired action works as expected. Reactor tries not to over-constrain the UI like the Vera scene editor does, as this often results in meaningful actions being inaccessible on the interface. I'd rather give you the tools you need to figure out what works than cut you off from what you want to do.
 
 !!! note
     HELP EVERYONE OUT: If you have a device that is missing the Common Actions part of the menu, or a frequently-used action is missing from Common Actions, or if the device has particular rules or values that apply to the parameter for an action, please let the author know, and also submit the device data using the facility provided on the "Tools" tab. I use this data to enhance the device information database that helps smooth out the UI where particular facts are known.
 
 ![Selecting an action](images/device-action-actions.png)
 
-Once the action is selected, Reactor will display fields for the required parameters for the action, if any. Some actions have fairly "open" parameter declarations, and you're going to need to know what values can be accepted there. Some have more constrained definitions, maybe even down to a short list of accepted values, in which case a menu is displayed rather than an input field. If error-checking is possible based on the field definition, it will be performed when you leave the field, and if an error is detected, the field will be highlighted in red.
+Once the action is selected, Reactor will display fields for the required parameters for the action, if any. Some actions have fairly "open" parameter declarations, and you're going to need to know what values can be accepted there. Some have more constrained definitions, maybe even down to a short list of acceptable values, in which case a menu is displayed rather than an input field. If error-checking is possible based on the field definition, it will be performed when you leave the field, and if an error is detected, the field will be highlighted in red. A yellow highlight indicates that the field value *may* not be acceptable, but Reactor doesn't know for sure.
 
 ![Setting a Device Action parameter](images/device-action-parameters.png)
 

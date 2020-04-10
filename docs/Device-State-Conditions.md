@@ -4,13 +4,13 @@ A *Device State* condition reacts to a change in device state. Whenever a device
 
 ![Condition Options highlighted](images/condition-options-highlight.png)
 
-Every Luup device stores its condition in _state variables_. To create a Device State condition, you select the device you want to watch and the state variable that should be watched, and set the operator and value appropriate to the test. For example, if device #17 was a motion sensor, when you select that device from the device list, the state variable list will update to show the list of state variables defined on the device. One of these variables will be "Tripped," which is the tripped condition of the motion sensor, so you would choose that. You would then choose the condition "equals" and set the value to "1" to see if the sensor is tripped.
+Every Luup device stores its condition in _state variables_. To create a _Device State_ condition, you select the device you want to watch and the state variable that should be watched, and set the operator and value appropriate to the test. For example, if device #17 was a motion sensor, when you select that device from the device list, the state variable list will update to show the list of state variables defined on the device. One of these variables will be "Tripped," which is the tripped condition of the motion sensor, so you would choose that. You would then choose the condition "equals" and set the value to "1" to see if the sensor is tripped.
 
 This is very similar to scene device triggers in Luup, with one key difference: with Vera's native scene device triggers, you can only react to predefined events that are defined for the device, and this is usually a small subset of everything that is available. Reactor allows you to set a condition based on the value of *any* state variable on the device. For most cases, the Vera-defined scene triggers adequately describe the most useful conditions for a device, so Reactor gives you a shortcut to set up the condition using the parameters of a Vera scene trigger. You do this by clicking the "events list" control shown here:
 
 ![Condition Options highlighted](images/condition-options-triggers.png)
 
-But, as mentioned above, not every capability of the device is expressed by the default list of scene triggers. In this case, you may need to specify the variable to be watched yourself. You do this by clicking on the variable list (shown below), and choosing a variable from the menu.
+But, as mentioned above, not every testable state of the device is expressed by the default list of scene triggers. In this case, you may need to specify the variable to be watched yourself. You do this by clicking on the variable list (shown below) and choosing a variable from the menu.
 
 ![Condition Options highlighted](images/condition-options-variables.png)
 

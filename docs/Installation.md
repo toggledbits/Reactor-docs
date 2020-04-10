@@ -12,8 +12,8 @@ To download the plugin from Github:
 
 1. Go to [the Reactor Github repository](https://github.com/toggledbits/Reactor);
 1. Choose the branch for the version of Reactor you want to download:
-    * master: the *master* branch is the last released version;
-    * hotfix: the master release plus any important fixes that have come up since the master release &mdash; this version is expected to be at least as stable as *master*, if not more.
+    * master: the *master* branch is the most recent released version;
+    * hotfix: the master branch plus any important fixes that have come up since the master release &mdash; this version is expected to be at least as stable as *master*, if not more.
     * stable: the latest development release for which basic QA has been completed &mdash; may still contain bugs, but they should be trivial;
     * develop: the latest developer code changes checked in, with minimal QA &mdash; this version will be the bleeding-edge of functionality, but may also contain bugs (from the most trivial to soul-crushing, crash-inducing horrors);
 1. Click the green "Download/clone" button, and choose "Download ZIP" from the pop-up;
@@ -22,6 +22,6 @@ To download the plugin from Github:
 1. Upload the unzipped files to your system.
     * For Vera, the uploader at *Apps > Develop apps > Luup files* is recommended. Select all of the unzipped files except the ".md" files and drag them as group to the "Upload" button in the Vera UI and drop them there.
 	* For openLuup, use whatever tool you wish to move the files into your openLuup directory.
-1. If this is a first-time installation of Reactor, create the Reactor master device. 
+1. *If and only if* this is a first-time installation of Reactor on the device, create the Reactor master device:
 	* On Vera, this is done in *Apps > Develop apps > Create Device*. You only need to supply the name (description field) of the device (simply "Reactor" is recommended), the UPnP device filename (`D_Reactor.xml`) and UPnP implementation filename (`I_Reactor.xml`). Then reload Luup and [hard reload/cache refresh your browser](https://refreshyourcache.com/en/cache/).
 	* On openLuup, use ALTUI's "Create Device" button in the Devices view.
