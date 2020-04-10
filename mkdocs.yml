@@ -12,7 +12,6 @@ nav:
   - 'Getting Started': "Getting Started.md"
   - Conditions:
     - Overview: Conditions.md
-    - Condition Options: Condition-Options.md
     - 'Type: Device State': Device-State-Conditions.md
     - 'Type: Date-Time': Date-Time-Conditions.md
     - 'Type: Sunrise-Sunset': Sunrise-Sunset-Conditions.md
@@ -23,6 +22,7 @@ nav:
     - 'Type: Geofence': Geofence-Conditions.md
     - 'Type: Interval': Interval-Conditions.md
     - 'Other Types': Other-Conditions.md
+    - 'Condition Options': Condition-Options.md
   - Activities:
     - Overview: Activities.md
     - 'Action: Device Action': Device-Action.md
