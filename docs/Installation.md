@@ -1,4 +1,28 @@
+## Installation Prerequisites
+
+### Prequisites for Vera Systems
+
+Vera systems must be running UI7. Reactor runs on all firmware released since 2018 for Vera Plus, Vera Secure, and Vera Edge. Reactor runs on Vera Lite and Vera3 systems (firmware 7.0.27/1.7.1040 recommended). Reactor does not run on UI6 or earlier.
+
+Systems running firmware earlier than 7.30 should first be checked for adequate available space on the partition on which `/etc/cmh-ludl` resides. Ideally, you should have not less than 2MB free space prior to installation.
+
+### Prerequisites for openLuup
+
+The following are required to run Reactor on openLuup:
+
+* `openLuup` version 2020.04.14b or higher;
+* `Lua` version 5.1;
+* `dkjson` version 1.2 or higher acceptable; but 2.5 or higher preferred; it is also highly recommended that `LPeg` be installed;
+* `LuaSocket` version 2.0.2 or higher (which should include the `mime`, `socket.http`, `socket.smtp`, and `ltn12` modules);
+* `LuaSec` version 0.8 or higher (version 0.6 might be acceptable for reaching some low-encryption endpoints);
+* `lfs` recommended, but not required.
+
+All of the above except openLuup should, if possible, be installed using your OS distro's available installation tools (e.g. `apt-get`, `yum`, etc.). Direct installation may be necessary, however, if certain modules or their required versions cannot be installed through these tools.
+
 ## Installing from the Vera Plugin Marketplace (Vera)
+
+!!! question "Got backup?"
+    A full backup of your Vera system, including the ZWave network, is always a good idea before making any big system changes. Installing any new plugin should always be considered a "big" system change.
 
 Reactor can be installed via the "Install Apps" function in the Vera UI. This is the recommended approach for Vera systems. Use the search function there to search for "Reactor" and it should pop right up.
 
