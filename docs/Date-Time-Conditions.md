@@ -53,9 +53,22 @@ Note that user interface currently does not go to exceptional lengths to keep yo
 
 ## Combining Date/Time Conditions with Others
 
-Sometimes it's desirable to split or combine conditions. One of the most common is combining a _Date/Time_ condition with a _Sunrise/Sunset_ condition, for when you want lights to go on at sunset, which changes daily, but always go off at 11pm, a fixed time. To handle this, you simply create an "AND" group containing a _Sunrise/Sunset_ condition ("after sunset") and a _Date/Time_ condition ("before 11pm"). Combined effect: true when the current time is after sunset *and* before 11pm.
+Sometimes it's desirable to split or combine condition types. One of the most common is combining a _Date/Time_ condition with a _Sunrise/Sunset_ condition, for when you want lights to go on at sunset, which changes daily, but always go off at 11pm, a fixed time. To handle this, you simply create an "AND" group containing a _Sunrise/Sunset_ condition ("after sunset") and a _Date/Time_ condition ("before 11pm"). Combined effect: true when the current time is after sunset *and* before 11pm.
 
-Similarly, if you want to be active between 10am and 2pm every day of the month of January, you would set up two conditions in one group: the first, a Date/Time condition with "between Jan 1 00:00 and Feb 1 00:00", and the second another Date/Time condition with hours only "between 10:00 and 14:00". Note that this is different from a single Date/Time condition set to "between Jan 1 10:00 and Feb 1 14:00", as the latter would be active at (for example) 2pm, midnight, and 4am on every day of January, where the former is not. Think about it. If it's not clear to you why this would be, please contact me.
+Special care needs to be taken if your recurring time condition spans midnight, though. Here are the rules for combining recurring daily conditions:
+
+1. If the span always falls within one day (that is, does not cross midnight), the combination of conditions is `A AND B`, that is, two conditions in an "AND" group. For example, `Sunrise/Sunset after sunrise AND Date/Time before 12:00` will be *true* from sunrise to noon.
+
+2. Combined conditions that span midnight are `A OR B`, that is, your two conditions in an "OR" group. For example, `Sunrise/Sunset after sunset OR Date/Time before 02:00` will be *true* from sunset to 2am, crossing through midnight.
+
+The reason that case two (crossing midnight) switches to "OR" for the group operator is that all recurring time conditions reset at midnight, as stated above. That means `after sunset` on its own will only be *true* from sunset to midnight. Likewise `before 02:00` will be *true* from midnight to 2am. Using the "OR" operator on the group, in this case, combines the two separate (but adjacent) spans of time into a single unbroken *true* output of the group over the span of time.
+
+![Combined Date/Time and Sunrise/Sunset spanning midnight](images/date-time-combined.png)
+
+!!! note "Think Differently"
+    Sometimes thinking about a problem inside-out makes it easier. For example, we might be thinking about how to write our condition rules as "between sunset and 2am". But an equivalent rule is "not between 2am and sunset".
+
+Conditions with dates can also be combined. If you want to be active between 10am and 2pm every day of the month of January, you would set up two conditions in one group: the first, a Date/Time condition with "between Jan 1 00:00 and Feb 1 00:00", and the second another Date/Time condition with hours only "between 10:00 and 14:00". Note that this is different from a single Date/Time condition set to "between Jan 1 10:00 and Feb 1 14:00", as the latter would be active at (for example) 2pm, midnight, and 4am on every day of January, where the former is not. Think about it. If it's not clear to you why this would be, please contact me.
 
 ## Cautions
 
