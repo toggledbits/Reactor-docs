@@ -37,9 +37,13 @@ nav:
     - 'Action: Reset Latched': Reset-Latched-Action.md
     - 'Action: HTTP Request': HTTP-Request-Action.md
   - 'Expressions': 'Expressions-&-Variables.md'
+  - 'Tools': 'Tools-Tab.md'
+  - 'Management':
+    - 'Backup & Restore': 'Backup-&-Restore.md'
+    - 'Network Status': 'Network-Status.md'
+    - 'Clock Validity': 'Clock-Validity.md'
   - 'FAQ': 'FAQ.md'
   - 'How To': How-To.md
-  - 'Backup & Restore': 'Backup-&-Restore.md'
   - 'Support & Suggestions': 'Support-&-Suggestions.md'
   - 'Concept: Modular-Logic': Modular-Logic.md
   - 'Concept: Simplifying Logic': Simplifying-Logic.md
