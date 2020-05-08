@@ -45,7 +45,7 @@ nav:
   - 'FAQ': 'FAQ.md'
   - 'How To': How-To.md
   - 'Support & Suggestions': 'Support-&-Suggestions.md'
-  - 'Concept: Modular-Logic': Modular-Logic.md
+  - 'Concept: Modular Logic': Modular-Logic.md
   - 'Concept: Simplifying Logic': Simplifying-Logic.md
   - 'Concept: UPnP/Luup State Variables': Luup-State-Variables-Tutorial.md
   - 'Concept: Throttling': Throttling.md

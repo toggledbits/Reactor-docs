@@ -26,6 +26,8 @@ The *VeraAlerts Direct* method uses the VeraAlerts `SendAlert` action to directl
 
 The *SMTP Mail* method uses the Lua `socket.smtp` library to send a SMTP (Simple Mail Transfer Protocol) message. A subject and list of recipients may optionally be specified; if not specified, the default subject and recipients will be used. Email addresses specified with this method must be in the form `someone@domain` or `Name <someone@domain>` and may not contain commas, even if quotes are used (e.g. `"Lastname, Firstname" <someone@domain>` is not acceptable).
 
+The recipient, subject, and message body all allow expression references using the usual `{variableName}` syntax.
+
 !!! attention "STARTTLS is not supported!"
     *STARTTLS* is a special SMTP command that converts an open, non-encrypted channel to encrypted, and is often used between SMTP clients and servers (it is particularly associated with port 587). This is a limitation of the underlying libraries used. As an alternative, many servers support fully-encrypted (SSL/TLS, from the start) connections on port 465.
 
@@ -70,5 +72,7 @@ Any error that occurs in communication with the Syslog server will be logged to 
 ### User URL
 
 The *User URL* method sends an HTTP GET request to a specific URL. The special keyword `{message}` can be included anywhere in the URL to insert the message text. The most common place for this is in the query parameters, for example: `http://myserver/appnotify?text={message}`
+
+The URL may, at any point, contain additional expression substitutions (using the usual curly-braced `{varaibleName}` syntax) as needed. The special form `{urlencode(variableName)}` should be used in any query parameters on the URL. This is not required for `{message}`, which is always URL-encoded. If you need to send the message without URL encoding, use your own variable (name other than `message`) and do not wrap its reference in `urlencode()`.
 
 Any error that occurs in communication with the server will be logged to the LuaUPnP log file. Please look there for messages before posting "it doesn't work" messages on the community forums. The author will not provide diagnostic support for your network or custom URL targets.

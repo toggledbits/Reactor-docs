@@ -10,7 +10,7 @@ Reactor responds to changes in device and system states. When something Reactor 
 The conditions are contained in a *ReactorSensor*, a child device of the main Reactor device that is used as an organizational container for conditions and activities. You may create as many or as few of these ReactorSensors as you need &mdash; they are light on system resources, there is no limit other than practical, and there is no fee or limit enforced when you reach a certain number of ReactorSensors.
 
 !!! info "Free, as in free beer"
-    Did I mention that Reactor is free? That's right. No charge. For any amount of logic you want to build. Support through the Vera Community Forums is also included. I will never charge for Reactor (but [donations are appreciated](https://www.toggledbits.com/donate) to support this and other projects).
+    Did I mention that Reactor is free? That's right. No charge. For any amount of logic you want to build. Support through the Vera Community Forums is also included. I will never charge for Reactor (but [donations are appreciated](https://www.toggledbits.com/donate) to support this and other projects). Please read the [license](Installation.md#license-and-use-restrictions) for details and restrictions.
 
 Conditions are organized into *condition groups* (or simply *groups*). A group of conditions has a logic operator associated with it. A group with two conditions that uses the "AND" logic operator will only be true when *both* conditions are true (A AND B). A group that uses the "OR" operator will be true when *any* of the conditions is true, but false when none of them is true (A OR B). And so on. Reactor supports the boolean operators AND, OR, and XOR (exclusive-or), and the inversion operator NOT.
 

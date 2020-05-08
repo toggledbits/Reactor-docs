@@ -13,12 +13,11 @@ Here are some examples of things you can do with Reactor (many of which would be
 * Send a notification when the garage door is left open for more than 15 minutes between 10pm and 8am, and blip a siren every 30 minutes until it is closed;
 * Turn off outdoor lights at 11pm, unless your house is in "Party Mode" (as set by a virtual switch you created);
 * Reboot your Vera at 5am every Sunday;
-* Temporarily run air conditioning if the humidity in your house exceeds 55%;
+* Track the ambient humidity in your bathroom and turn on ventilation when there's a sudden rapid increase (as when someone showers or bathes);
 * Close the blinds and turn off your pool equipment if the current weather is "lightning";
-* Put your Nest thermostat in "Home" mode when your house mode is "Away" but your caretaker uses their lock code to open the front door, and then later return the Nest to "Away" mode;
-* Turn off all the lights in the basement when the stairway light is turned on and off twice within 10 seconds.
+* Implement "wasp in a box" presence detection in a room or entire house;
+* Implement a complete alarm system with "home", "away" and "stay" security modes, perimeter zones, interior zones, smoke and fire detection/alarm;
 
 ## Free (as in Free Beer)
 
-Reactor is free to use (but not open-source at this time). There is no cost to license Reactor, and there are no charges for large numbers of logic rules, complex configurations, or additional functionality. That said, the author appreciates [donations](https://www.toggledbits.com/donate) in support of the project.
-
+Reactor is free to use (but not open-source at this time; see the [license](Installation.md#license-and-use-restrictions)). There is no cost to license Reactor for use on your Vera Luup or openLuup system, and there are no charges for large numbers of logic rules, complex configurations, or additional functionality. That said, the author appreciates [donations](https://www.toggledbits.com/donate) in support of the project.
