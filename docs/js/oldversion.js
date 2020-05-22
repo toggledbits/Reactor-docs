@@ -1,3 +1,8 @@
+/**
+ * Show warning that doc is not current version. To add, place following in YML:
+ * extra_javascript:
+ *   - js/oldversion.js
+ */
 var loc = document.location.pathname.replace( /\/docs\/[^\/]+\//, "/docs/" );
 var m = document.createElement('div');
 m.innerHTML = '<p style="font-size: 20px; color: red;"><b>You are reading the documentation for an older version of Reactor. To read documentation for the current version, please go <a href="' + loc + '">here</a>.</b></p>';
