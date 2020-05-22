@@ -6,6 +6,8 @@ markdown_extensions:
   - sane_lists
   - def_list
 copyright: 'Copyright &copy; 2020 Patrick H. Rigney, All Rights Reserved'
+extra_javascript:
+  - js/oldversion.js
 nav:
   - Home: index.md
   - Installation: Installation.md
