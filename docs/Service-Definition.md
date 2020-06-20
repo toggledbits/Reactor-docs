@@ -18,11 +18,19 @@ The "SetEnabled" action takes a single parameter ("newEnabledValue", 0 or 1) to 
 `luup.call_action( "urn:toggledbits-com:serviceId:ReactorSensor", "SetEnabled", { newEnabledValue=0 }, device_number )`
 
 ### Reset
+
+!!! attention "Deprecated"
+    This function is deprecated and should not be used.
+
 The "Reset" action takes no parameters, and resets the "Tripped" state of the sensor until the next state change and condition evaluation occurs. This is a flag change only; it does not cause any action within the ReactorSensor.
 
 `luup.call_action( "urn:toggledbits-com:serviceId:ReactorSensor", "Reset", { }, device_number )`
 
 ### Trip
+
+!!! attention "Deprecated"
+    This function is deprecated and should not be used.
+
 The "Trip" action takes no parameters, and sets the "Tripped" state of the sensor (to true) until the next condition evaluation and state change occurs. This is a flag change only; it does not cause any action within the ReactorSensor.
 
 `luup.call_action( "urn:toggledbits-com:serviceId:ReactorSensor", "Trip", { }, device_number )`
@@ -33,9 +41,21 @@ The "Restart" action, which takes no parameters, restarts the ReactorSensor (wit
 `luup.call_action( "urn:toggledbits-com:serviceId:ReactorSensor", "Restart", { }, device_number )`
 
 ### ResetRuntime
+
 The "ResetRuntime" action, which takes no parameters, resets the "Runtime" and "TripCount" accumulators, and resets "RuntimeSince" (see below).
 
 `luup.call_action( "urn:toggledbits-com:serviceId:ReactorSensor", "ResetRuntime", { }, device_number )`
+
+### SetVariable
+
+The "SetVariable" action sets the value of an expression-less ReactorSensor variable.
+
+```
+luup.call_action( "urn:toggledbits-com:serviceId:ReactorSensor", "SetVariable",
+    { VariableName="varname", NewValue="123" }, device_number )
+```
+
+The variable named must already exist on the ReactorSensor, and it must be [expression-less](Expressions-&-Variables.md#expression-less-variables).
 
 ### RunScene
 
