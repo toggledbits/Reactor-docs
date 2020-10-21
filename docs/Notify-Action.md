@@ -8,7 +8,7 @@ Each notification method has its own requirements and limitations; see below.
 
 ## Notification Methods
 
-The following notification methods are currently supported.
+The following notification methods are currently supported:
 
 ### Vera-native
 
@@ -60,6 +60,16 @@ The Prowl method sends the requested message to the Prowl servers. Setup of the 
 Prowl method messages may contain expression variable references using the usual `{variableName}` syntax.
 
 Any error that occurs in communication with the Prowl API will be logged to the LuaUPnP log file. Please look there for messages before posting "it doesn't work" messages on the community forums. Configuration problems with either the state variables required for this method or your Prowl account cause most problems. The author will not provide diagnostic support for Prowl account or applications used with Prowl.
+
+### Pushover
+
+The Pushover method sends notifications through the [Pushover service](https://pushover.net). You must register for an account on their web site or through one of their mobile apps. This will give you a user ID, which you must put in the `PushoverUser` state variable on the Reactor master device. You must then register an application to get an API token, which you will put in the `PushoverToken` state variable.
+
+!!! info
+    Pushover is a paid service. It offers a 7-day trial period. See their site for current pricing (as of this writing, it's US$4.99 per client/endpoint.
+
+!!! attention
+    As of this writing, the "Emergency (2)" priority level does not work on Android, and apparently not on iOS. This is a bug and/or limitation of the service (and iOS). It is therefore not displayed as an available priority level.
 
 ### Syslog
 
