@@ -10,14 +10,34 @@ But it is possible for a Vera system to boot up when Internet access is unavaila
 
 The best way to mitigate against time-related problems is to set up a network time service in your LAN that's always available &mdash; a system with a good hardware real time clock, preferably UPS-backed &mdash; so that your Vera/openLuup system always has access to a reliable time server, even during the absence of Internet access. Many home and small-office NAS systems have this built-in and easily enabled. Although your local time server will still use network time servers for synchronization, their hardware clocks allow them to serve reasonably accurate time locally on the network even when syncing to those servers isn't available to them &mdash; something your Vera cannot do itself.
 
-Once you have a reliable time server locally, you can reconfigure your Vera system to use it. On firmware 7.31, a script such as this can be run:
+!!! attention
+    The following discusses changes to your Vera's OS configuration. **Make a backup (with Z-Wave backup) before making any such changes!**
+
+Once you have a reliable time server locally, you can reconfigure your Vera system to use it. On firmware 7.31, the following commands can be run after using SSH to gain shell access to the unit:
 
 ```
-uci set ntpclient.@ntpserver[0].hostname='LOCALNTPSERVERIP'
+uci set ntpclient.@ntpserver[0].hostname="LOCALNTPSERVERIP1"
+uci set ntpclient.@ntpserver[1].hostname="LOCALNTPSERVERIP2"
 uci commit ntpclient
+uci set system.ntp.server="LOCALNTPSERVERIP1"
+uci add_list system.ntp.server="LOCALNTPSERVERIP2"
+uci commit system.ntp
+reboot
 ```
 
-Vera seems to periodically default these settings (and certainly will at firmware updates), so running these in a script periodically may be necessary. A full reboot of the system is required for the changes to take effect.
+If you only have one NTP server, either supply the same IP for both.
+
+Another easy thing you can do, short of supplying your own LAN time server(s), is to disable Vera's errant setting of a default date/time. As it turns out, the underlying OS (OpenWRT) does a fairly good job of supplying a default time on boot, and Vera's later attempt actually undoes that good work and breaks it. You can disable the Vera action by doing *one of* (either):
+
+1. Remove the file `/etc/rc.d/S115-mios_fix_time` (it may or may not have `.sh` on your system, and it may have a different number in some versions of firmware &mdash; the key is the capital-S at the beginning and the body `mios_fix_time` match);
+2. Edit the file `/etc/init.d/mios_fix_time.sh`, find the lines below, and remove them:
+   ```
+   log "Set datetime to 2000-01-01 00:00:00 UTC"
+   date "$DATE_OPT" "$DATE_SET_FMT" -s "$DATE_EPOCH" 1>/dev/null 2>>$log_file
+   ```
+
+!!! attention
+    Any of the changes in this section will be undone by a factory reset or firmware upgrade/reinstall, or restore of backup from before the changes are made. You may want to keep a link to this page or capture it in Evernote or your notebook for future reference/repetition.
 
 ## Unstable Clock
 
