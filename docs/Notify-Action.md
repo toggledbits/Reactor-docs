@@ -6,6 +6,8 @@ The _Notify_ action sends a notification using an available notification mechani
 
 Each notification method has its own requirements and limitations; see below.
 
+Except for the "Vera-native" method, all notification methods support an expression as the message to be sent. This is done by placing the expression between curly braces (`{...}`). For example, a message that inserts the expression variable `humidity` might look like this: `{ "The current humidity is " .. humidity .. "%" }`. Notice that the expression is entirely surrounded by the curly braces. The form `The current humidity is {humidity}%` is *incorrect and will not work*. Any valid expression may be used, and all operators and functions are available. For example, if you have temperature in degrees-C but you want your message in degrees-F, you can use `{ "The temperature is " .. ( temp * 1.8 + 32 ) .. "F" }`.
+
 ## Notification Methods
 
 The following notification methods are currently supported:
@@ -14,19 +16,24 @@ The following notification methods are currently supported:
 
 The *Vera-native* method sends a notification through Vera's servers using the native Vera notification mechanism, *unless VeraAlerts is installed* (see below). This mechanism is available on all Vera Luup installations, and is the default notification method.
 
-If VeraAlerts is installed *and* its "Process Notifications" setting is turned on, then VeraAlerts overrides Vera's built-in notification mechanism. VeraAlerts will take over the hidden scenes and insert its own Lua code in the scene. This Lua code imports the message and recipient lists, making them uneditable in Reactor--you could edit them, but it would not change in VeraAlerts until you went in there and edited them as well. To avoid the duplication of effort this creates, Reactor detects when VeraAlerts has modified a notification scene and makes the notification uneditable in Reactor from then on. Editing of the notification must take place in VeraAlerts. Reactor will import changes from VeraAlerts any time the Activity tab is opened on the ReactorSensor, just to ensure that both locations shows the same data.
+!!! attention "For VeraAlerts Users Only"
+    If VeraAlerts is installed *and* its "Process Notifications" setting is turned on, then VeraAlerts overrides Vera's built-in notification mechanism. VeraAlerts will take over the hidden scenes and insert its own Lua code into them. This Lua code imports the message and recipient lists, making them uneditable in Reactor--you could edit them, but it would not change in VeraAlerts until you went in there and edited them as well. To avoid the duplication of effort this creates, Reactor detects when VeraAlerts has modified a notification scene and makes the notification uneditable in Reactor from then on. Editing of the notification must take place in VeraAlerts. Reactor will import changes from VeraAlerts any time the Activity tab is opened on the ReactorSensor, just to ensure that both locations shows the same data.
 
-Messages sent using the *Vera-native* method (regardless of whether VeraAlerts is installed or not) do not expand ReactorSensor expression variable references, as they are driven by hidden scenes (the Vera way), and the embedded messages in those scenes cannot be changed "on the fly" (they require a Luup restart to take effect). If you need to include expression variable values in your message, use a method other than *Vera-native*.
+!!! attention "Expressions not supported"
+    Messages sent using the *Vera-native* method (regardless of whether VeraAlerts is installed or not) do not expand ReactorSensor expression/variable references, as they are driven by hidden native scenes (the Vera way), and the embedded messages in those scenes cannot be changed "on the fly" (they require a Luup restart to take effect). If you need to include expression variable values in your message, use a method other than *Vera-native*.
+
+!!! attention "Luup Reload Required"
+    Because Vera's native alert system is based on hidden scenes, any change to the message or recipients requires the scene to be rewritten and a Luup reload for the changes to take effect. Just know that any time you add or edit a Vera-native notification, Luup will be reloaded when you save the activity.
 
 ### VeraAlerts Direct
 
-The *VeraAlerts Direct* method uses the VeraAlerts `SendAlert` action to directly send a message without passing through Vera built-in scene-based notification mechanism. By using this direct action, messages may contain expression variable references using the usual `{variableName}` syntax.
+The *VeraAlerts Direct* method uses the VeraAlerts `SendAlert` action to directly send a message without passing through Vera built-in scene-based notification mechanism. By using this direct action, messages may contain expression variable references using the usual `{expression}` syntax.
 
 ### SMTP Mail
 
 The *SMTP Mail* method uses the Lua `socket.smtp` library to send a SMTP (Simple Mail Transfer Protocol) message. A subject and list of recipients may optionally be specified; if not specified, the default subject and recipients will be used. Email addresses specified with this method must be in the form `someone@domain` or `Name <someone@domain>` and may not contain commas, even if quotes are used (e.g. `"Lastname, Firstname" <someone@domain>` is not acceptable).
 
-The recipient, subject, and message body all allow expression references using the usual `{variableName}` syntax.
+The recipient, subject, and message body all allow expression references using the usual `{expression}` syntax.
 
 !!! attention "STARTTLS is not supported!"
     *STARTTLS* is a special SMTP command that converts an open, non-encrypted channel to encrypted, and is often used between SMTP clients and servers (it is particularly associated with port 587). This is a limitation of the underlying libraries used. As an alternative, many servers support fully-encrypted (SSL/TLS, from the start) connections on port 465.
@@ -63,13 +70,13 @@ Any error that occurs in communication with the Prowl API will be logged to the 
 
 ### Pushover
 
-The Pushover method sends notifications through the [Pushover service](https://pushover.net). You must register for an account on their web site or through one of their mobile apps. This will give you a user ID, which you must put in the `PushoverUser` state variable on the Reactor master device. You must then register an application to get an API token, which you will put in the `PushoverToken` state variable.
+The *Pushover* method sends notifications through the [Pushover service](https://pushover.net). You must register for an account on their web site or through one of their mobile apps. This will give you a user ID, which you must put in the `PushoverUser` state variable on the Reactor master device. Then register an application to get an API token, which you must put in the `PushoverToken` state variable. The token put into `PushoverToken` is the default token that will be used if the token field on the *Notify* action is left blank (that is, the token field on the *Notify* action overrides the configuration default, if you need to do that).
 
 !!! info
-    Pushover is a paid service. It offers a 7-day trial period. See their site for current pricing (as of this writing, it's US$4.99 per client/endpoint.
+    Pushover is a paid service. It offers a 7-day trial period. See [their site](https://pushover.net) for current pricing (as of this writing, it's US$4.99 per client/endpoint).
 
 !!! attention
-    As of this writing, the "Emergency (2)" priority level does not work on Android, and apparently not on iOS. This is a bug and/or limitation of the service (and iOS). It is therefore not displayed as an available priority level.
+    As of this writing, the "Emergency (2)" priority level verifiably does not work on Android, and apparently not on iOS either. This is a bug and/or limitation of the Pushover service (and iOS). It is therefore not displayed as an available priority level.
 
 ### Syslog
 

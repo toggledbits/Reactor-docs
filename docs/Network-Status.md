@@ -30,9 +30,25 @@ If the `InternetCheckInterval` and/or `InternetCheckSites` state variables do no
 
 ## OpenLuup Implementation Considerations
 
-Reactor versions from 3.6 (the first with the Internet health check) through 3.8 implemented the Internet access check in Lua in the Reactor plugin itself. To make it more efficient, on Vera systems as of 3.9 the health check has been moved to a shell script running as a daemon that notifies Reactor of any changes in Internet access status. OpenLuup retains the internal Lua-based check by default. However, openLuup users may use the daemon script, and this is encouraged.
+Reactor versions from 3.6 (the first with the Internet health check) through 3.8 implemented the Internet access check in Lua in the Reactor plugin itself. To make it more efficient, on Vera systems as of 3.9 the health check has been moved to a shell script running as a daemon that notifies Reactor of any changes in Internet access status. OpenLuup retains the internal Lua-based check by default. However, openLuup users may use the daemon script, and this is recommended.
 
-If you choose to use the daemon script, you must install it as a startup daemon yourself, since openLuup runs on too great a variety of systems for a self-install to be included for every possibility. It's likely that, since current Luup Veras are Linux systems, the approach used in `reactor_internet_check.sh` to install (and uninstall) the script as a daemon is not far from what you will need to do for your Linux distribution. Within `reactor_internet_check.sh`, there are two versions of the typical Linux daemon startup script (placed in `/etc/init.d`), one for systems that use `procd` and one for systems that do not &mdash; choose the one that matches your distro's approach (hint: see if `/sbin/procd` or `/usr/sbin/procd` exists). Once you have the script up and running (and starting itself at boot), your system will automatically know not to use the internal Lua-based check (i.e. when Reactor starts receiving updates from the daemon, it stops doing its own internal checks).
+If you choose to use the daemon script, you should first attempt an automatic install by running: `sudo reactor_internet_check.sh -I` (make sure the script file has execute permissions). The script can self-install to the system startup in one of three common configurations:
+
+1. systemd (recent Fedora, CentOS, Debian, Ubuntu and many others);
+1. sysvinit (`/etc/rc.d/` files) with procd;
+1. sysvinit without procd.
+
+If the script reports that it doesn't know how to install on your system, you must then figure out how to get the `reactor_internet_check.sh` script up and running at boot as a daemon yourself.
+
+If the script stops with a syntax or runtime error, check the following:
+
+* Make sure you are running the script as `root`, either by login or `sudo`;
+* Try forcing the install to run using `bash` by running `sudo bash reactor_internet_check.sh -I`. If this works, you likely will also need to edit the *shebang* (the first line of the file) so it reads `#!/bin/bash` (please restart the service, or the entire system, after making this change).
 
 !!! attention "You are your own guru."
-    The script provided runs on `bash` or `ash` on Linux; it will not run on `csh`, `ksh`, or generic `sh`, or any non-Linux shell/command processor. I do not provide Windows PowerShell or other variants of the script. It's up to you to get it working on your platform, including getting it installed to run at boot. Again, because of the wide variety of systems on which openLuup can run, I cannot provide specific instructions or support for openLuup users integrating the script, beyond what's shown in the script as delivered.
+    The script provided runs on `bash` or `ash` on Linux, and `sh` in many cases; it will not run on `csh` or `ksh`, or any non-Linux shell/command processor. I do not provide Windows PowerShell or other variants of the script. It's up to you to get it working on your platform, including getting it installed to run at boot. Because of the wide variety of systems on which openLuup can run, I cannot provide specific instructions or support for openLuup users integrating the script, beyond what's shown in the script as delivered.
+
+!!! info "Consistent Configuration"
+    apps.When you use the script/daemon, configuration of the sites tested and the testing interval is still controlled by the state variables as described in the previous section. It is therefore advised that you not change the script to adjust these values. Use the state variables for their intended purpose. Reloading Luup is required to make these state variable changes take effect in the script, but it is *not* necessary to restart the script itself or reboot the host OS.
+
+When the script is running, it will periodically (according to the configured interval) test one or more of the target sites and send the result of the test to Reactor, which will update its `NetworkStatus` state variable accordingly. If the script fails to update Reactor for three consecutive time intervals, then on openLuup the checks will revert (temporarily) to the internal (Lua-based) check; once the script daemon is restarted, the Lua-based checks will stop. On Vera systems, a failure of the script causes the `NetworkStatus` variable to go blank (i.e. network status unknown).

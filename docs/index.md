@@ -20,4 +20,4 @@ Here are some examples of things you can do with Reactor (many of which would be
 
 ## Free (as in Free Beer)
 
-Reactor is free to use (but not open-source at this time; see the [license](Installation.md#license-and-use-restrictions)). There is no cost to license Reactor for use on your Vera Luup or openLuup system, and there are no charges for large numbers of logic rules, complex configurations, or additional functionality. That said, the author appreciates [donations](https://www.toggledbits.com/donate) in support of the project.
+Reactor is free to use (but *not* open-source at this time; see the [license](Installation.md#license-and-use-restrictions)). There is no cost to license Reactor for use on your Vera Luup or openLuup system, and there are no charges for large numbers of logic rules, complex configurations, or additional functionality. That said, the author appreciates [donations](https://www.toggledbits.com/donate) in support of the project.

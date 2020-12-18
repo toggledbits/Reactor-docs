@@ -6,7 +6,7 @@
 
 There are two "official" ways to get support:
 
-1. Start a new topic in the [Reactor category on the Vera forums](https://community.getvera.com/c/plugins-amp-plugin-development/reactor);
+1. Start a new topic in the [Reactor category on the Vera forums](https://community.getvera.com/c/plugins-and-plugin-development/reactor/178);
 2. [Open an issue in the Reactor Github repository](https://github.com/toggledbits/Reactor/issues).
 
 When requesting support, please include the following:
@@ -21,7 +21,8 @@ Here are some other tips for ensuring the quickest and most accurate response; P
 * **DO** start a new topic (or issue) for new problems (don't piggy-back or hi-jack other threads);
 * **DO** post in English, and translate, as much as you can, device names, group names, and comments in your Logic Summary if they contain non-English phrases. If you really can't manage English, then please go ahead and post in your native language and ask for help from the community for translation; there are lots of eager helpers out there;
 * **DO** use the email submission mechanism for your Logic Summary if you have privacy concerns about posting its content on the forums (very public and archived);
-* **DO** understand that I am relying on you to be my hands and eyes &mdash; I cannot see what you are seeing, or do what you are doing, or do by myself any of the experiments I might do if I was chasing an issue on my own system. I have no knowledge of your system, or its devices, its history, or your approach to building your logic. I am relying entirely on you to give me good and complete information, *preferably starting with your opening post*. Remote support requires you to put in the effort, not just me, and to follow directions carefully. The better you do it, the faster we get through it.
+* **DO** understand that I am relying on you to be my hands and eyes &mdash; I cannot see what you are seeing, or do what you are doing, or do by myself any of the experiments I might do if I was chasing an issue on my own system. I have no knowledge of your system, or its devices, its history, or your approach to building your logic. I am relying entirely on you to give me good and complete information, *preferably starting with your opening post*. Remote support requires you to put in the effort, not just me, and to follow directions carefully. The better you do it, the faster we get through it;
+* **DO** if you suspect a UI bug, please first [check that you are on a supported browser/configuration](Installation.md#requirements-for-the-reactor-ui), and also retest/try with all browser extensions disabled (some browsers can be started in "safe mode" to do this easily) before making your report. If the problem goes away when an extension is disabled, you should report your issue to the extension's support team.
 
 And here are some things you should avoid; PLEASE:
 
@@ -43,4 +44,4 @@ Put another way: **always state the problem you need to solve, not just the prob
 
 ## Suggestions
 
-Have a great idea for a feature? Let me know about in the [Reactor category on the Vera forums](https://community.getvera.com/c/plugins-amp-plugin-development/reactor).
+Have a great idea for a feature? Let me know about in the [Reactor category on the Vera forums](https://community.getvera.com/c/plugins-and-plugin-development/reactor/178).
