@@ -62,11 +62,11 @@ I do cursory testing on Edge and Opera, but these are not recommended configurat
 
 ### From the Vera Plugin Marketplace (Vera)
 
-Reactor can be installed via the "Install Apps" function in the Vera UI. This is the recommended approach for Vera systems. Use the search function there to search for "Reactor" and it should pop right up.
+Updates to Reactor are no longer published through the Vera App Marketplace. Please install using from Github directly using the instructions below.
 
 ### From the AltAppStore (Vera & openLuup)
 
-The AltAppStore (under ALTUI) offers all current releases of Reactor as well as the current stable development branch. To install, find Reactor in the AltAppStore, choose the version you'd like to install, and click the "Alt" button.
+The AltAppStore (under ALTUI) offers all current releases of Reactor as well as the current stable development branch. To install, find Reactor in the AltAppStore, choose the version you'd like to install (recommended: `stable`), and click the "Alt" button.
 
 ### Directly from Github (Vera & openLuup)
 
@@ -125,4 +125,4 @@ and all rights granted you hereunder are withdrawn, null, and void. Your
 violation of any of the terms hereof contemporaneously and summarily 
 terminates your license and any and all rights granted you hereunder.
 
-Reactor and this documentation site Copyright 2018, 2019, 2020 Patrick H. Rigney, All Rights Reserved
+Reactor and this documentation site Copyright 2018, 2019, 2020, 2022 Patrick H. Rigney, All Rights Reserved
