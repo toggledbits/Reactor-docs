@@ -9,14 +9,11 @@ All system requirements are subject to change without notice.
 
 The following Vera systems and firmware are currently supported:
 
-* Vera Edge, Plus and Secure systems must be running UI7 firmware at least 7.0.29 (1.7.4452/4453/4453). Version 7.31 is recommended (see callout below).
+* Vera Edge, Plus and Secure systems must be running UI7 firmware at least 7.0.29 (1.7.4452/4453/4453). Version 7.32 beta 4 is highly recommended.
 
 * Vera Lite and Vera3 systems must be on UI7 7.0.27 (1.7.1040), the final firmware release for these systems. These systems are EOL and will not be supported after Reactor 3.9.
 
 Reactor does not run on Vera UI6, UI5, or earlier firmware.
-
-!!! info "Upcoming Vera Firmware 7.32"
-    As of this writing, firmware 7.32 has been [announced publicly](https://community.getvera.com/t/fw-7-32-beta-what-who-when/216121/11) and is in engineering preview and expected to be released in early 2021. Barring any disruptive changes made prior to general release, 7.32 will, as of that time, become the recommended version for use with Reactor.
 
 !!! attention "Users on 7.0.30 and below"
     Before installing Reactor for the first time, systems running firmware earlier than 7.0.30 should first be checked for adequate available space on the partition on which `/etc/cmh-ludl` resides. Ideally, you should have not less than 2MB free space prior to installation. You can check the space available there by logging in via SSH and typing: `df -kh /etc/cmh-ludl/`
@@ -37,7 +34,7 @@ All of the above except openLuup should, if possible, be installed using your OS
 
 ### Prerequisites for ALTUI (on Vera or openLuup)
 
-Reactor currently runs on ALTUI versions 2.46.2536 to 2.52.2550. Reactor will not run on earlier or later versions and they are not supported. If you upgrade to a later version of ALTUI than that supported, the Reactor UI may not function and could cause data/configuration loss. You should downgrade your ALTUI to the highest supported version until the newer version is certified for use with Reactor.
+Reactor currently runs on ALTUI versions 2.46.2536 to 2.52.2553. Reactor will not run on earlier or later versions and they are not supported. If you upgrade to a later version of ALTUI than that supported, the Reactor UI may not function and could cause data/configuration loss. You should downgrade your ALTUI to the highest supported version until the newer version is certified for use with Reactor.
 
 !!! caution
     ALTUI is not just a very different UI for Luup, but also a *significantly different* development environment from that provided by Vera UI7. It is similar to, but not entirely compatible with, UI7. **As a result of these issues, not every release of ALTUI will be supported.**
@@ -62,7 +59,7 @@ I do cursory testing on Edge and Opera, but these are not recommended configurat
 
 ### From the Vera Plugin Marketplace (Vera)
 
-Updates to Reactor are no longer published through the Vera App Marketplace. Please install using from Github directly using the instructions below.
+Updates to Reactor are no longer published through the Vera App Marketplace. Please install from Github directly using the instructions below.
 
 ### From the AltAppStore (Vera & openLuup)
 
